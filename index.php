@@ -28,13 +28,13 @@ if (isset($_SESSION["id"])) {
         <div class="container-fluid">
             <div class="row">
                 <div style="background-color: #000;height:50%;"></div>
-                <div class="logo col-9">
+                <div class="logo " style="width: 62.25%;">
                     <a href="index.php"> <img src="assets/logo.png" alt="Panganiban Livestock" /></a>
                 </div>
-                <div class="col-2" style="display: table">
+                <div class="col-2" style="display: table;width: 20.75%;" >
                     <div style="display: table-cell; vertical-align: middle;">
                         <label for="category">Products</label>
-                        <select name="categp=ory" id="category">
+                        <select name="category" id="category">
                             <option value="" disabled selected>Select </option>
                             <option value="pork">Pork</option>
                             <option value="beef">Beef</option>

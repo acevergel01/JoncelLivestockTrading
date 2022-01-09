@@ -19,9 +19,10 @@ body {
 
 header {
   width: 100vw;
-  height: 115px;
-  border-bottom: solid 10px #000;
+  height: 135px;
+  border-bottom: solid 12px #000;
   font-family: "Poppins";
+  background-color: #808080;
 }
 
 header .inner {
@@ -37,25 +38,28 @@ header .logo {
   float: left;
   margin-left: 20px;
 }
-
 header .logo div {
   height: 100%;
   display: table-cell;
   vertical-align: middle;
 }
-
 header .logo img {
-  height: 90px;
+  height: 110px;
   margin-top: 5px; /* Optical alignment of the logo */
 }
-
 header label {
   padding: 0%;
   display: inline-block;
+  font-size: larger
 }
 header select {
+  height: 30px;
   width: 80%;
   display: inline-block;
+  background-color: rgba(255,255,255,.1);
+  border: solid 1px black;
+  border-radius: 5px;
+  font-size: larger
 }
 header .button {
   background-color: #fff; /* This HEX is the color of the button */
@@ -66,9 +70,11 @@ header .button {
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  margin-left: 20px;
+	border: none;
 }
 
-header nav .button:hover {
+header .button:hover {
   filter: brightness(0.95);
 }
 .center {
