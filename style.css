@@ -1,9 +1,15 @@
+html {
+  height: 100%;
+}
 body {
   background: #eceff1;
   color: rgba(0, 0, 0, 0.87);
   font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 600px) {
   body {
@@ -36,7 +42,6 @@ header .logo div {
   height: 100%;
   display: table-cell;
   vertical-align: middle;
-  
 }
 
 header .logo img {
@@ -44,13 +49,13 @@ header .logo img {
   margin-top: 5px; /* Optical alignment of the logo */
 }
 
-header label{
+header label {
   padding: 0%;
   display: inline-block;
 }
-header select{
+header select {
   width: 80%;
-  display:inline-block;
+  display: inline-block;
 }
 header .button {
   background-color: #fff; /* This HEX is the color of the button */
@@ -64,13 +69,26 @@ header .button {
 }
 
 header nav .button:hover {
-  filter: brightness(.95);
+  filter: brightness(0.95);
 }
 .center {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.content-container {
+  flex-grow: 1;
+}
+.side {
+  background-image: url("assets/BG1.jpg");
+  background-size: cover;
+  flex-grow: 1;
+}
+.content {
+  background-image: url("assets/BG2.jpg");
+  background-size: cover;
+  flex-grow: 1;
 }
 .imgcontainer {
   text-align: center;
@@ -97,8 +115,6 @@ header nav .button:hover {
   margin: 5px auto; /* 15% from the top and centered */
   border: 1px solid #888;
   width: 30%; /* Could be more or less, depending on screen size */
-
-
 }
 .modal-content .avatar {
   max-height: 50px;
@@ -116,7 +132,7 @@ header nav .button:hover {
 .modal-content .button:hover {
   filter: brightness(1.05);
 }
-label{
+label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }

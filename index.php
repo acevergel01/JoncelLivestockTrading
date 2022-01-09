@@ -9,7 +9,7 @@ if (isset($_SESSION["id"])) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Panganiban Livestock</title>
+    <title>Joncel Livestock Trading</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <!-- icon -->
@@ -22,7 +22,7 @@ if (isset($_SESSION["id"])) {
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body >
     <header>
         <!-- Header -->
         <div class="container-fluid">
@@ -91,6 +91,18 @@ if (isset($_SESSION["id"])) {
             </div>
         </form>
     </div>
+
+    <!-- The bodyyy -->
+    <div class="row content-container">
+            <div class="col-3 side" >
+            </div>
+            <div class="col-9 content">
+            </div>
+    </div>
+    
+
+
+
     <script>
         $(document).ready(function() {
             $("#btnLogin").click(function() {
