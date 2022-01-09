@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION["id"])) {
     header("Location:home.php");
-}?>
+} ?>
 <!DOCTYPE html>
 <html>
 
@@ -25,29 +25,35 @@ if (isset($_SESSION["id"])) {
 <body>
     <header>
         <!-- Header -->
-        <div class="inner">
-            <div class="logo">
-                <div>
-                    <img src="assets/logo.png" alt="Insert logo" />
+        <div class="container-fluid">
+            <div class="row">
+                <div style="background-color: #000;height:50%;"></div>
+                <div class="logo col-9">
+                    <a href="index.php"> <img src="assets/logo.png" alt="Panganiban Livestock" /></a>
+                </div>
+                <div class="col-2" style="display: table">
+                    <div style="display: table-cell; vertical-align: middle;">
+                        <label for="category">Products</label>
+                        <select name="categp=ory" id="category">
+                            <option value="" disabled selected>Select </option>
+                            <option value="pork">Pork</option>
+                            <option value="beef">Beef</option>
+                            <option value="chicken">Chicken</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+                <div class="col" style="position: relative;">
+                    <button type="button" class="button" onclick="document.getElementById('id01').style.display='block'">
+                        LOGIN
+                    </button>
+
                 </div>
             </div>
 
-            <nav>
-                <li>
-                    <span>
-                        <button type="button" class="button" onclick="document.getElementById('id01').style.display='block'">
-                            Login
-                        </button>
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <button type="button" class="button" onclick="openSignup()">
-                            Signup
-                        </button>
-                    </span>
-                </li>
-            </nav>
+
         </div>
     </header>
 
