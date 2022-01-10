@@ -28,11 +28,11 @@ if (isset($_SESSION["id"])) {
         <div class="container-fluid">
             <div class="row">
                 <div style="background-color: #000;height:50%;"></div>
-                <div class="logo col-7">
+                <div class="logo col-sm-7">
                     <a href="index.php"> <img src="assets/logo.png" alt="Jocel Livestock Trading" /></a>
                 </div>
-                <div class="col-5 row" style="padding:0;margin:0">
-                    <div class="col-2"></div>
+                <div class="row col-sm-5" style="padding:0;margin:0">
+                    <div class="col-2 filler"></div>
                     <div class="col-7" style="display: table;">
                         <div style="display: table-cell; vertical-align: middle;">
                             <label for="category">Products</label>
