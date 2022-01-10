@@ -13,7 +13,7 @@ if (isset($_SESSION["id"])) {
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <!-- icon -->
-    <link rel="shortcut icon" type="image/jpg" href="assets/logo.png" />
+    <link rel="shortcut icon" type="image/jpg" href="assets/logo_circ.png" />
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -22,38 +22,37 @@ if (isset($_SESSION["id"])) {
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body >
-    <header>
+<body>
+    <header class="flex-container">
         <!-- Header -->
         <div class="container-fluid">
             <div class="row">
                 <div style="background-color: #000;height:50%;"></div>
-                <div class="logo " style="width: 62.25%;">
-                    <a href="index.php"> <img src="assets/logo.png" alt="Panganiban Livestock" /></a>
+                <div class="logo col-7">
+                    <a href="index.php"> <img src="assets/logo.png" alt="Jocel Livestock Trading" /></a>
                 </div>
-                <div class="col-2" style="display: table;width: 20.75%;" >
-                    <div style="display: table-cell; vertical-align: middle;">
-                        <label for="category">Products</label>
-                        <select name="category" id="category">
-                            <option value="" disabled selected>Select </option>
-                            <option value="pork">Pork</option>
-                            <option value="beef">Beef</option>
-                            <option value="chicken">Chicken</option>
+                <div class="col-5 row" style="padding:0;margin:0">
+                    <div class="col-2"></div>
+                    <div class="col-7" style="display: table;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <label for="category">Products</label>
+                            <select name="category" id="category">
+                                <option value="" disabled selected>Select </option>
+                                <option value="pork">Pork</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
 
-                        </select>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3" style="position: relative;">
+                        <button type="button" class="button" onclick="document.getElementById('id01').style.display='block'">
+                            LOGIN
+                        </button>
 
                     </div>
-
-                </div>
-                <div class="col" style="position: relative;">
-                    <button type="button" class="button" onclick="document.getElementById('id01').style.display='block'">
-                        LOGIN
-                    </button>
-
                 </div>
             </div>
-
-
         </div>
     </header>
 
@@ -93,14 +92,16 @@ if (isset($_SESSION["id"])) {
     </div>
 
     <!-- The bodyyy -->
-    <div class="row content-container">
-            <div class="col-3 side" >
-            </div>
-            <div class="col-9 content">
-            </div>
+    <div class="row container-fluid flex-grow-1" style="padding:0;margin:0">
+        <div class="col-3 side">
+        </div>
+        <div class="col-9 content">
+        </div>
     </div>
-    
-
+    <!-- footer -->
+    <footer class="row" style="padding: 0;margin: 0;">
+        <div class="col-9">hello</div>
+    </footer>
 
 
     <script>
