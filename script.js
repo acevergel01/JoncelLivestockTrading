@@ -1,18 +1,20 @@
 
 function openLogin() {
-  console.log("Open");
-  document.getElementById("frmLogin").style.display = "block";
+  closeSignup();
+  document.getElementById("id01").style.display = "block";
 }
 
 function closeLogin() {
-  document.getElementById("frmLogin").style.display = "none";
+  document.getElementById("id01").style.display = "none";
 }
 function openSignup() {
-  document.getElementById("signup").style.display = "block";
+  console.log("OPEn")
+  closeLogin();
+  document.getElementById("id02").style.display = "block";
 }
 
 function closeSignup() {
-  document.getElementById("signup").style.display = "none";
+  document.getElementById("id02").style.display = "none";
 }
 var modal = document.getElementById("id01");
 

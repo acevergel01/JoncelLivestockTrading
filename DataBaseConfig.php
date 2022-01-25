@@ -9,10 +9,10 @@ class DataBaseConfig
 
     public function __construct()
     {
-        $this->servername = 'sql6.freemysqlhosting.net';
-        $this->username = 'sql6462974';
-        $this->password = 'jujuE1JaUA';
-        $this->databasename = 'sql6462974';
+        $this->servername = 'remotemysql.com';
+        $this->username = 'osOx6XEzZY';
+        $this->password = 'lxlDQrLbH0';
+        $this->databasename = 'osOx6XEzZY';
 
     }
 }

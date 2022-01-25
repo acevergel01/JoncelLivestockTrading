@@ -16,97 +16,107 @@ if (isset($_SESSION["id"])) {
     <link rel="shortcut icon" type="image/jpg" href="assets/logo_circ.png" />
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
+    <!-- font -->
+    <link href="http://fonts.cdnfonts.com/css/goudy-old-style" rel="stylesheet">
+    <!-- google icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/33baa4b98a.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
 </head>
 
 <body>
-    <header class="flex-container">
+    <header>
         <!-- Header -->
-        <div class="container-fluid">
-            <div class="row">
-                <div style="background-color: #000;height:50%;"></div>
-                <div class="logo col-sm-7">
-                    <a href="index.php"> <img src="assets/logo.png" alt="Jocel Livestock Trading" /></a>
-                </div>
-                <div class="row col-sm-5" style="padding:0;margin:0">
-                    <div class="col-2 filler"></div>
-                    <div class="col-7" style="display: table;">
-                        <div style="display: table-cell; vertical-align: middle;">
-                            <label for="category">Products</label>
-                            <select name="category" id="category">
-                                <option value="" disabled selected>Select </option>
-                                <option value="pork">Pork</option>
-                                <option value="beef">Beef</option>
-                                <option value="chicken">Chicken</option>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-3" style="position: relative;">
-                        <button type="button" class="button" onclick="document.getElementById('id01').style.display='block'">
-                            LOGIN
-                        </button>
-
-                    </div>
-                </div>
-            </div>
+        <div class="logo">
+            <a href="/"> <img src="assets/logo_circ.png" alt="Jocel Livestock Trading" /></a>
+        </div>
+        <div class="company-name">
+            <span>JONCEL LIVESTOCK TRADING</span>
         </div>
     </header>
 
     <!-- End of the header -->
     <!-- Start of the body -->
-    <!-- The Modal -->
+    <!-- The login Modal -->
 
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
+    <div id="id01" class="modal" style="display: block;">
         <!-- Modal Content -->
-        <form id="frmLogin" class="modal-content animate" method="post" action="#" target="frame">
-            <div class="imgcontainer">
-                <img src="assets/logo.png" alt="Avatar" class="avatar" />
-            </div>
+        <div class="modal-content-outside animate">
+            <div class="modal-content-inside">
+                <form id="frmLogin" class="modal-content " method="post">
+                    <div class="login_header">
+                        <span>Login To Your Account</span>
+                    </div>
+                    <div class="row">
+                        <div class=" col-lg-7 col-sm-12" style="padding:80px;float:left">
+                            <label for="email"><b>E-mail</b></label>
+                            <input type="text" placeholder="E-mail" name="email" id="email" required />
 
-            <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Email" name="email" id="email" required />
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Password" name="password" id="password" required />
+                            <button type="submit" id="btnLogin">
+                                <span class="material-icons center">
+                                    arrow_forward
+                                </span>
+                            </button>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Password" name="password" id="password" required />
-                <input class="button" type="button" id="btnLogin" value="Login" />
-                <label>
-                    <input type="checkbox" checked="checked" name="remember" />
-                    Remember me
-                </label>
+                        </div>
+                        <div class="col-lg-5 col-sm-12" style="padding-top:80px;float: left;text-align: center">
+                            <img src="assets/logo_name.png" alt="asd" style="width: 70%;margin:0 auto 50px 0px">
+                            <div style="color: black;"><span>Don't have an account? Click</span><input type="button" value="here" onclick="openSignup()" /> to register.</div>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="container" style="background-color: #f1f1f1">
-                <button class="button" type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
-                    Cancel
-                </button>
-                <span class="psw"> <a href="#">Forgot password?</a></span>
+        </div>
+    </div>
+    <!-- sign up modal -->
+    <div id="id02" class="modal">
+        <!-- Modal Content -->
+        <div class="modal-content-outside animate">
+            <div class="modal-content-inside">
+                <form id="signup" class="modal-content " method="post">
+                    <div class="login_header">
+                        <span>Register</span>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 
     <!-- The bodyyy -->
-    <div class="row container-fluid flex-grow-1" style="padding:0;margin:0">
-        <div class="col-3 side">
+    <div class="row container-fluid flex-grow-1" style="padding:0;margin:0;height:541px">
+        <div class="col-3">
         </div>
         <div class="col-9 content">
         </div>
     </div>
     <!-- footer -->
-    <footer class="row" style="padding: 0;margin: 0;">
-        <div class="col-9">hello</div>
+    <footer style="padding: 0;margin: 0;display: table">
+        <div style="display: table-cell;vertical-align: middle;padding-left:70%">
+
+            <span style="color:white;padding:0 10px;">CONTACT</span>
+
+            <button><i class="fab fa-instagram"></i>
+            </button>
+
+            <button><i class="fab fa-twitter"></i>
+            </button>
+            
+            <button><i class="fab fa-facebook"></i>
+
+            </button>
+        </div>
     </footer>
 
 
     <script>
         $(document).ready(function() {
             $("#btnLogin").click(function() {
+                console.log("Hello")
                 $.ajax({
                     url: "login.php",
                     type: "POST",
@@ -122,7 +132,6 @@ if (isset($_SESSION["id"])) {
             });
         })
     </script>
-    <script src="script.js"></script>
 </body>
 
 </html>

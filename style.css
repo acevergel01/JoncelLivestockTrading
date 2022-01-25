@@ -14,95 +14,43 @@ body {
   flex-direction: column;
   background-image: url("assets/BG1.jpg");
   background-size: cover;
+  overflow: wrap;
 }
 
 header {
   width: 100vw;
-  height: 135px;
-  border-bottom: solid 10px #000;
+  height: 120px;
   font-family: "Poppins";
   background-color: #808080;
-  background-color: rgba(94, 94, 94, 0.6);
-}
-
-header .inner {
-  width: 99%; /* This is the inner width of the content inside of your header (80%, etc) */
-  height: 100%;
-  display: block;
-  margin: 0 auto;
+  background-color: rgba(94, 94, 94, 0);
+  border: 1px solid #000;
 }
 
 header .logo {
   display: table;
-  height: 100%;
+  height: 120px;
+  width: 120px;
   float: left;
-  margin-left: 20px;
-  padding: 0;
-  margin: 0;
-  padding-left: 10px;
-}
-header .logo div {
-  height: 100%;
-  display: table-cell;
-  vertical-align: middle;
-}
-header .logo img {
-  height: 110px;
-  margin-top: 5px; /* Optical alignment of the logo */
-}
-header label {
-  width: 100%;
-  padding: 0%;
-  display: inline-block;
-  font-size: larger;
-  margin: 0px;
-}
-header select {
-  min-width: 100px;
-  height: 35px;
-  width: 75%;
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: solid 1px black;
-  border-radius: 5px;
-  font-size: larger;
-}
-header .button {
-  height: 35px;
-  background-color: #fff; /* This HEX is the color of the button */
-  color: #000;
-  border-radius: 4px;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  border: none;
+  margin-left: 84px;
 }
 
-header .button:hover {
-  filter: brightness(0.95);
+header .logo img {
+  height: 100%;
+  width: 100%;
 }
-.center {
-  left: 50%;
-  top: 50%;
+header .company-name {
+  height: 100%;
+  padding-top: 20px;
+  font-size: 40px;
+  font-family: "Goudy Old Style", sans-serif;
 }
-.side {
-  background-size: cover;
-  flex-grow: 1;
-}
+
 .content {
+  width: auto;
   background-image: url("assets/BG2.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   flex-grow: 1;
-}
-.imgcontainer {
-  text-align: center;
-}
-.flex-container {
-  display: flex;
-  flex-direction: row;
 }
 /* The Modal (background) */
 .modal {
@@ -115,63 +63,71 @@ header .button:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  padding-top: 60px;
+  background-color: rgba(255, 255, 255, 0.1); /* Black w/ opacity */
+  padding-top: 130px;
+
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-content-outside {
+  padding: 5px;
+  margin: 2px auto; /* 15% from the top and centered */
+  width: 55%; /* Could be more or less, depending on screen size */
+  background-color: #fff;
+}
+.modal-content-inside {
+  background-image: url("assets/login_bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.modal-content{
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+}
+.modal-content .login_header {
+  background-color: #fbf782;
+  max-height: 100px;
+  min-height: 100px;
+  font-size: 32px;
   padding: 20px;
-  background-color: #fefefe;
-  margin: 5px auto; /* 15% from the top and centered */
-  border: 1px solid #888;
-  width: 30%; /* Could be more or less, depending on screen size */
+  background: rgba(251, 247, 130, 0.7);
 }
-.modal-content .avatar {
-  max-height: 50px;
-  min-height: 5px;
-}
-.modal-content .button {
-  background-color: #1ab26b; /* This HEX is the color of the button */
+.modal-content button {
+  background-color: #2D2D2D; /* This HEX is the color of the button */
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 4px;
-  width: 100%;
+  padding: 10px ;
+  border-radius: 8px;
+  width: 45%;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-.modal-content .button:hover {
-  filter: brightness(1.05);
-}
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
+  float: right;
 }
 input[type="text"],
 input[type="password"] {
   width: 100%;
   padding: 12px;
-  border: 2px solid green;
+  border: 2px solid #747474;
   resize: vertical;
+  border-radius: 10px;
+  background: inherit;
 }
-/* The Close Button */
-.close {
-  /* Position it in the top right corner outside of the modal */
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-/* Close button on hover */
-.close:hover,
-.close:focus {
-  color: red;
+input[type="button"]{
+  
+  border: none;
+  background-color: inherit;
+  color: yellow;
+  text-decoration: underline;
   cursor: pointer;
+  display: inline-block;
 }
-
+footer button{
+	border: none;
+	font: inherit;
+	cursor: pointer;
+  color: white;
+  background: black;
+  padding:0 10px;
+}
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
@@ -201,9 +157,6 @@ footer {
 }
 @media screen and (max-width: 767px) {
   header {
-    height: 200px;
-  }
-  header .filler {
-    display: none;
+    font-size: 20px;
   }
 }
