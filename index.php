@@ -42,7 +42,7 @@ if (isset($_SESSION["id"])) {
     <!-- Start of the body -->
     <!-- The login Modal -->
 
-    <div id="id01" class="modal" style="display: block;">
+    <div id="id01" class="modal-open" style="display: block;">
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
@@ -51,7 +51,7 @@ if (isset($_SESSION["id"])) {
                         <span>Login To Your Account</span>
                     </div>
                     <div class="row">
-                        <div class=" col-lg-7 col-sm-12" style="padding:80px;float:left">
+                        <div class=" col-lg-7 col-sm-12" style="padding:30px 50px 1px 50px;float:left;">
                             <label for="email"><b>E-mail</b></label>
                             <input type="text" placeholder="E-mail" name="email" id="email" required />
 
@@ -64,9 +64,9 @@ if (isset($_SESSION["id"])) {
                             </button>
 
                         </div>
-                        <div class="col-lg-5 col-sm-12" style="padding-top:80px;float: left;text-align: center">
-                            <img src="assets/logo_name.png" alt="asd" style="width: 70%;margin:0 auto 50px 0px">
-                            <div style="color: black;"><span>Don't have an account? Click</span><input type="button" value="here" onclick="openSignup()" /> to register.</div>
+                        <div class="col-lg-5 col-sm-12 modal-right-side" style="padding-top:30px;float: left;text-align: center">
+                            <img src="assets/logo_name.png" alt="asd" ">
+                            <div style="color: black;margin-bottom:30px"><span>Don't have an account? Click</span><input type="button" value="here" onclick="openSignup()" /> to register.</div>
                         </div>
                     </div>
                 </form>
@@ -88,15 +88,15 @@ if (isset($_SESSION["id"])) {
     </div>
 
     <!-- The bodyyy -->
-    <div class="row container-fluid flex-grow-1" style="padding:0;margin:0;height:541px">
-        <div class="col-3">
+    <div class="row container-fluid flex-grow-1 body1" style="padding:0;margin:0;">
+        <div class="col-3" style="min-height:541px">
         </div>
         <div class="col-9 content">
         </div>
     </div>
     <!-- footer -->
-    <footer style="padding: 0;margin: 0;display: table">
-        <div style="display: table-cell;vertical-align: middle;padding-left:70%">
+    <footer style="padding: 0;margin: 0;">
+        <div style="float:right;height:100%;padding:15px;margin-right:50px">
 
             <span style="color:white;padding:0 10px;">CONTACT</span>
 
