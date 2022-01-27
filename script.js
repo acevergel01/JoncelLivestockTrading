@@ -8,7 +8,6 @@ function closeLogin() {
   document.getElementById("id01").style.display = "none";
 }
 function openSignup() {
-  console.log("OPEn")
   closeLogin();
   document.getElementById("id02").style.display = "block";
 }
@@ -16,11 +15,10 @@ function openSignup() {
 function closeSignup() {
   document.getElementById("id02").style.display = "none";
 }
-var modal = document.getElementById("id01");
+var modal = document.getElementById("id02");
+var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+
+span.onclick = function() {
+  openLogin();
 }

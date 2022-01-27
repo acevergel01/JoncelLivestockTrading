@@ -24,7 +24,6 @@ if (isset($_SESSION["id"])) {
     <script src="https://kit.fontawesome.com/33baa4b98a.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
 </head>
 
 <body>
@@ -42,16 +41,16 @@ if (isset($_SESSION["id"])) {
     <!-- Start of the body -->
     <!-- The login Modal -->
 
-    <div id="id01" class="modal-open" style="display: block;">
+    <div id="id01" class="modal-open" style="display: none;">
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
                 <form id="frmLogin" class="modal-content " method="post">
-                    <div class="login_header">
+                    <div class="modal_header">
                         <span>Login To Your Account</span>
                     </div>
                     <div class="row">
-                        <div class=" col-lg-7 col-sm-12" style="padding:30px 50px 1px 50px;float:left;">
+                        <div class=" col-md-7 col-sm-12" style="padding:30px 50px 1px 50px;float:left;">
                             <label for="email"><b>E-mail</b></label>
                             <input type="text" placeholder="E-mail" name="email" id="email" required />
 
@@ -62,11 +61,11 @@ if (isset($_SESSION["id"])) {
                                     arrow_forward
                                 </span>
                             </button>
-
                         </div>
-                        <div class="col-lg-5 col-sm-12 modal-right-side" style="padding-top:30px;float: left;text-align: center">
-                            <img src="assets/logo_name.png" alt="asd" ">
-                            <div style="color: black;margin-bottom:30px"><span>Don't have an account? Click</span><input type="button" value="here" onclick="openSignup()" /> to register.</div>
+                        <div class="col-md-5 col-sm-12 modal-right-side" style="padding-top:30px;float: left;text-align: center">
+                            <img src="assets/logo_name.png" alt="asd">
+                            <div style=" color: black;margin-bottom:30px"><span>Don't have an account? Click</span><input type="button" value="here" onclick="openSignup()" /> to register.
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -74,13 +73,98 @@ if (isset($_SESSION["id"])) {
         </div>
     </div>
     <!-- sign up modal -->
-    <div id="id02" class="modal">
+    <div id="id02" class="modal-open signup" style="display: block;width:100%">
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
-                <form id="signup" class="modal-content " method="post">
-                    <div class="login_header">
+                <form id="frmSignup" class="modal-content" method="post">
+                    <div class="modal_header">
                         <span>Register</span>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="row" style="padding:30px">
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        FULL NAME
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="Last Name, Fist Name Middle Name" style="border-radius: 0;height:inherit" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        EMAIL
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="youremail@email.com" style="border-radius: 0;height:inherit" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field" style="text-align:center">
+                            <input class="radio-input" type="radio" id="male" name="gender" value="Male">
+                            <label class="radio-label" for="male">Male</label>
+                            <input class="radio-input" type="radio" id="female" name="gender" value="Feale">
+                            <label class="radio-label" for="male">Female</label>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        PASSWORD
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="password" placeholder="********" style="border-radius: 0;height:inherit" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        COMPLETE ADDRESS
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        CONTACT NUMBER
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" style="text-align: center;margin:20px 0 20px 0">
+                            <label class="">
+                                <input type="checkbox">
+                                <span class=""></span>
+                            </label>
+                            <span>By checking this you agree to the</span><input type="button" value="Terms & Conditions." onclick="openSignup()" />
+                        </div>
+                        <div class="col-12" style="text-align: center;">
+                            <button type="submit" id="btnSignup">
+                                <span class="material-icons center">
+                                    arrow_forward
+                                </span>
+                            </button>
+                        </div>
+
+
                     </div>
                 </form>
             </div>
@@ -89,9 +173,9 @@ if (isset($_SESSION["id"])) {
 
     <!-- The bodyyy -->
     <div class="row container-fluid flex-grow-1 body1" style="padding:0;margin:0;">
-        <div class="col-3" style="min-height:541px">
+        <div class="col-4">
         </div>
-        <div class="col-9 content">
+        <div class="col-8 content">
         </div>
     </div>
     <!-- footer -->
@@ -105,7 +189,7 @@ if (isset($_SESSION["id"])) {
 
             <button><i class="fab fa-twitter"></i>
             </button>
-            
+
             <button><i class="fab fa-facebook"></i>
 
             </button>
@@ -132,6 +216,8 @@ if (isset($_SESSION["id"])) {
             });
         })
     </script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

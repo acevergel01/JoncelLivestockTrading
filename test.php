@@ -18,14 +18,17 @@ session_start();
 </head>
 
 <body class="body-home">
-    <?php
-    if (isset($_SESSION["id"])) {
-    ?>
-        Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.
-        <?php
-    } else
-        header('Location:/');
-        ?>
+
+    <div class="a-text">
+        <div class="a-label">
+            <div>
+                SAMPLE TEXT
+            </div>
+        </div>
+        <div class="a-input">
+            <input type="text" placeholder="Sample text" style="border-radius: 0;" />
+        </div>
+    </div>
 </body>
 
 </html>
