@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["id"])) {
-    header("Location:home.php");
+    header("Location:dashboard.php");
 } ?>
 <!DOCTYPE html>
 <html>
@@ -80,7 +80,7 @@ if (isset($_SESSION["id"])) {
                 <form id="frmSignup" class="modal-content" method="post">
                     <div class="modal_header">
                         <span>Register</span>
-                        <span class="close">&times;</span>
+                        <span class="close">&times</span>
                     </div>
                     <div class="row" style="padding:30px">
                         <div class="col-md-6 text-field">
@@ -200,7 +200,6 @@ if (isset($_SESSION["id"])) {
     <script>
         $(document).ready(function() {
             $("#btnLogin").click(function() {
-                console.log("Hello")
                 $.ajax({
                     url: "login.php",
                     type: "POST",
@@ -209,8 +208,7 @@ if (isset($_SESSION["id"])) {
                         password: $("#password").val()
                     },
                     success: function(result) {
-                        console.log(result);
-                        window.location.replace("home.php");
+                        window.location.replace("dashboard.php");
                     },
                 });
             });

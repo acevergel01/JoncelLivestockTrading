@@ -7,7 +7,7 @@ if (count($_POST) > 0) {
     if (isset($_POST['email']) && isset($_POST['password'])) {
         if ($db->dbConnect()) {
             if ($db->logIn("users", $_POST['email'], $_POST['password'])) {
-                header("Location:home.php");
+                header("Location:dashboard.php");
                 echo "Success";
             }
         } else $message =  "Error: Database connection";
