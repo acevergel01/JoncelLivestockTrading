@@ -41,7 +41,7 @@ if (isset($_SESSION["id"])) {
     <!-- Start of the body -->
     <!-- The login Modal -->
 
-    <div id="id01" class="modal-open" style="display: none;">
+    <div id="id01" class="modal-open" style="display: block;">
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
@@ -73,7 +73,7 @@ if (isset($_SESSION["id"])) {
         </div>
     </div>
     <!-- sign up modal -->
-    <div id="id02" class="modal-open signup" style="display: block;width:100%">
+    <div id="id02" class="modal-open signup" style="display: none;width:100%">
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
