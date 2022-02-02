@@ -22,7 +22,9 @@ if (isset($_SESSION["id"])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/33baa4b98a.js" crossorigin="anonymous"></script>
-
+    <!-- jquery confirm -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -45,14 +47,14 @@ if (isset($_SESSION["id"])) {
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
-                <form id="frmLogin" class="modal-content " method="post">
+                <form id="frmLogin" class="modal-content">
                     <div class="modal_header">
                         <span>Login To Your Account</span>
                     </div>
                     <div class="row">
                         <div class=" col-md-7 col-sm-12" style="padding:30px 50px 1px 50px;float:left;">
                             <label for="email"><b>E-mail</b></label>
-                            <input type="text" placeholder="E-mail" name="email" id="email" required />
+                            <input type="email" placeholder="E-mail" name="email" id="email" required />
 
                             <label for="psw"><b>Password</b></label>
                             <input type="password" placeholder="Password" name="password" id="password" required />
@@ -77,7 +79,7 @@ if (isset($_SESSION["id"])) {
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
-                <form id="frmSignup" class="modal-content" method="post">
+                <form id="frmSignup" class="modal-content">
                     <div class="modal_header">
                         <span>Register</span>
                         <span class="close">&times</span>
@@ -91,7 +93,7 @@ if (isset($_SESSION["id"])) {
                                     </div>
                                 </div>
                                 <div class="a-input">
-                                    <input type="text" placeholder="Last Name, Fist Name Middle Name" style="border-radius: 0;height:inherit" />
+                                    <input type="text" placeholder="Last Name, Fist Name Middle Name" style="border-radius: 0;height:inherit" name="fname" id="fname" required />
                                 </div>
                             </div>
                         </div>
@@ -103,14 +105,14 @@ if (isset($_SESSION["id"])) {
                                     </div>
                                 </div>
                                 <div class="a-input">
-                                    <input type="text" placeholder="youremail@email.com" style="border-radius: 0;height:inherit" />
+                                    <input type="email" placeholder="youremail@email.com" style="border-radius: 0;height:inherit" name="regEmail" id="regEmail" required />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 text-field" style="text-align:center">
-                            <input class="radio-input" type="radio" id="male" name="gender" value="Male">
+                            <input class="radio-input" type="radio" id="male" name="gender" value="Male" required>
                             <label class="radio-label" for="male">Male</label>
-                            <input class="radio-input" type="radio" id="female" name="gender" value="Feale">
+                            <input class="radio-input" type="radio" id="female" name="gender" value="Female">
                             <label class="radio-label" for="male">Female</label>
                         </div>
                         <div class="col-md-6 text-field">
@@ -121,7 +123,7 @@ if (isset($_SESSION["id"])) {
                                     </div>
                                 </div>
                                 <div class="a-input">
-                                    <input type="password" placeholder="********" style="border-radius: 0;height:inherit" />
+                                    <input type="password" placeholder="********" style="border-radius: 0;height:inherit" name="regPassword" id="regPassword" required />
                                 </div>
                             </div>
                         </div>
@@ -133,7 +135,7 @@ if (isset($_SESSION["id"])) {
                                     </div>
                                 </div>
                                 <div class="a-input">
-                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" />
+                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" name="address" id="address" required />
                                 </div>
                             </div>
                         </div>
@@ -145,16 +147,17 @@ if (isset($_SESSION["id"])) {
                                     </div>
                                 </div>
                                 <div class="a-input">
-                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" />
+                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" name="number" id="number" required />
                                 </div>
                             </div>
                         </div>
                         <div class="col-12" style="text-align: center;margin:20px 0 20px 0">
                             <label class="">
-                                <input type="checkbox">
+                                <input type="checkbox" id="terms" required>
                                 <span class=""></span>
                             </label>
-                            <span>By checking this you agree to the</span><input type="button" value="Terms & Conditions." onclick="openSignup()" />
+                            <span>By checking this you agree to the</span><input type="button" value="Terms & Conditions."  />
+                            <!-- todo insert terms -->
                         </div>
                         <div class="col-12" style="text-align: center;">
                             <button type="submit" id="btnSignup">
@@ -163,8 +166,6 @@ if (isset($_SESSION["id"])) {
                                 </span>
                             </button>
                         </div>
-
-
                     </div>
                 </form>
             </div>
@@ -199,7 +200,9 @@ if (isset($_SESSION["id"])) {
 
     <script>
         $(document).ready(function() {
-            $("#btnLogin").click(function() {
+            // login 
+            $('#frmLogin').submit(function(e) {
+                e.preventDefault();
                 $.ajax({
                     url: "login.php",
                     type: "POST",
@@ -211,7 +214,44 @@ if (isset($_SESSION["id"])) {
                         window.location.replace("dashboard.php");
                     },
                 });
+                // signup
+                return false;
             });
+            $('#frmSignup').submit(function(e) {
+                e.preventDefault();
+                if (!$('#terms').is(':checked')) {
+
+                    return;
+                }
+                $.ajax({
+                    url: "signup.php",
+                    type: "POST",
+                    data: {
+                        name: $("#fname").val(),
+                        password: $("#regPassword").val(),
+                        address: $("#address").val(),
+                        number: $("#number").val(),
+                        email: $("#regEmail").val(),
+                        gender: $('input[name="gender"]:checked').val()
+                    },
+                    success: function(data) {
+                        if (data == 'Sign Up Success') {
+                            openLogin()
+                            return;
+                        }
+                        const dataObj = JSON.parse(data)
+                        if (dataObj.error) {
+                            $.alert({
+                                title: 'Duplicate Email',
+                                content: 'Email already registered',
+                                type: 'red',
+                            });
+                        }
+                    },
+                });
+
+                return false;
+            })
         })
     </script>
 

@@ -54,16 +54,22 @@ class DataBase
         return $login;
     }
 
-    function signUp($table, $email, $password)
+    function signUp($table, $email, $password,$name,$address,$number,$gender)
     {
+        $con = $this->dbConnect();
         $password = $this->prepareData($password);
         $email = $this->prepareData($email);
         $password = password_hash($password, PASSWORD_DEFAULT);
         $this->sql =
-            "INSERT INTO " . $table . " (password, email) VALUES ('"  . $password . "','" . $email . "')";
-        if (mysqli_query($this->dbConnect(), $this->sql)) {
-            return true;
-        } else return false;
+            "INSERT INTO " . $table . " (password, email,name,address,number,gender) VALUES ('"  . $password . "','" . $email . "','". $name . "','". $address. "','". $number. "','". $gender  ."')";
+        if (!mysqli_query($con, $this->sql)) {
+            $errorMsg = mysqli_error($con);
+            if (str_contains($errorMsg, 'users_email_unique')) { 
+                $error = 1;
+                $message = "Email already registered";
+            }
+            echo json_encode(array('error' => $error, 'message' => $message));
+        }else return true;
     }
     function resetPassword($table, $email,$password)
     {
