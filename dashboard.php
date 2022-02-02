@@ -30,10 +30,11 @@ session_start();
                 <span>JONCEL LIVESTOCK TRADING</span>
             </div>
             <div class="nav-container">
-                <button class="about-us-btn">About Us</button>
+                <button class="nav-btn" onclick="window.location.href='aboutus.php'">About Us</button>
                 <div class="vl"></div>
                 <button class="cart-btn">
-                    <img src="assets/cart.svg" alt=""></button>
+                    <img src="assets/cart.svg" alt="" onclick="window.location.href='logout.php'"></button>
+                    <!-- TODO remove logout -->
                 <button class="user-btn shadow-none">
                     <img src="assets/user.svg" alt="">
                 </button>
@@ -44,7 +45,7 @@ session_start();
                 <span class="span1">
                     PROVIDING THE ONLY BEST LIVESTOCK SINCE 2019
                 </span>
-            </div >
+            </div>
             <div style="margin-top: 120px;">
                 <span class="span2">
                     LET JLT MEAT YOUR NEEDS.
@@ -53,7 +54,6 @@ session_start();
             <div style="margin-top: 120px;">
                 <button>SHOP NOW</button>
             </div>
-
         </div>
     <?php
     } else
