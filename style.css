@@ -32,7 +32,7 @@ header .logo {
   height: 120px;
   width: 120px;
   float: left;
-  margin-left: 84px;
+  margin-left: 50px;
   margin-right: 50px;
 }
 
@@ -74,11 +74,12 @@ header .company-name {
   color: white;
   height: 40%;
   font-size: large;
-  padding: 0 30px 0 30px;
+  padding: 0 15px 0 15px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   border: none;
   border-radius: 3px;
+  max-width: 110px;
 }
 .cart-btn {
   background-position: center;

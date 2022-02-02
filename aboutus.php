@@ -40,7 +40,7 @@ session_start();
             </div>
         </header>
         <div class="aboutus-body" style="text-align: center;">
-            <div class="row" style="">
+            <div class="row" style="margin:0">
                 <div class="col-lg-6">
                     <img src="assets/logo_name.png" alt="">
                 </div>

@@ -51,7 +51,7 @@ session_start();
                     LET JLT MEAT YOUR NEEDS.
                 </span>
             </div>
-            <div style="margin-top: 120px;">
+            <div style="margin:110px 0;">
                 <button>SHOP NOW</button>
             </div>
         </div>
