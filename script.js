@@ -29,8 +29,8 @@ function selectProduct() {
       name: x,
     },
     success: function (result) {
-      $("#table-body").html(result);
-      $('[data-toggle="tooltip"]').tooltip();
+      j("#table-body").html(result);
+      j('[data-toggle="tooltip"]').tooltip();
     },
   });
 }
