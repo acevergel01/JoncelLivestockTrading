@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 function selectProduct() {
   var j = jQuery.noConflict();
-  var x = $("#products :selected").text();
+  var x = j("#products :selected").text();
   j.ajax({
     url: "products.php",
     type: "POST",

@@ -41,13 +41,13 @@
         });
         $(".decrement").click(function() {
             var id = $(this).attr('id');
-            var price = $("#quantity"+id).attr('price');
             const quantitySpan = $("#quantity"+id);
-            const totalSpan = $("#total"+id);
             const textToReplace = quantitySpan.text();
             if (textToReplace==0){
                 return;
             }
+            var price = $("#quantity"+id).attr('price');
+            const totalSpan = $("#total"+id);
             const newQuantity = parseInt(textToReplace) - 1;            
             const totalPrice = newQuantity * price
             quantitySpan.text(newQuantity);
