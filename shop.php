@@ -88,8 +88,17 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+    
+    selectProduct();
     $(document).ready(function() {
-        selectProduct();
+        $(".increment").click(function() {
+            var id = $(this).attr('id');
+            console.log("+!")
+            const element = $(`#increment`);
+            const textToReplace = element.text();
+            const newText = parseInt(textToReplace) + 1;
+            element.text(newText);
+        });
     });
 </script>
 </body>

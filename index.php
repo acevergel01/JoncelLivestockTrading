@@ -183,9 +183,9 @@ if (isset($_SESSION["id"])) {
     <!-- The bodyyy -->
     <div class="flex-grow-1" style="min-height:570px;padding:40px 0 0 0;">
 
-        <div class="index row" >
+        <div class="index row">
             <div class="col-3"></div>
-            <div class="col-3 row" >
+            <div class="col-3 row">
                 <div class="col-6">
                     <div class="box" style="float:right"><img src="assets/pig.png" alt=""></div>
                 </div>

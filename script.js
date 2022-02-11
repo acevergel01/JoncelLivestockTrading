@@ -1,4 +1,3 @@
-
 function openLogin() {
   closeSignup();
   document.getElementById("id01").style.display = "block";
@@ -16,20 +15,22 @@ function closeSignup() {
   document.getElementById("id02").style.display = "none";
 }
 
-
+$(document).ready(function () {
+  selectProduct();
+});
 
 function selectProduct() {
   var j = jQuery.noConflict();
-  var x = $('#products :selected').text();
+  var x = $("#products :selected").text();
   j.ajax({
-      url: "products.php",
-      type: "POST",
-      data: {
-          name: x
-      },
-      success: function(result) {
-          $("#table-body").html(result);
-          $('[data-toggle="tooltip"]').tooltip();
-      },
-  })
+    url: "products.php",
+    type: "POST",
+    data: {
+      name: x,
+    },
+    success: function (result) {
+      $("#table-body").html(result);
+      $('[data-toggle="tooltip"]').tooltip();
+    },
+  });
 }
