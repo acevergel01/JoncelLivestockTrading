@@ -30,7 +30,7 @@ function selectProduct() {
     },
     success: function (result) {
       j("#table-body").html(result);
-      j('[data-toggle="tooltip"]').tooltip();
+      $('[data-toggle="tooltip"]').tooltip();
     },
   });
 }
