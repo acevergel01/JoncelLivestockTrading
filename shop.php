@@ -90,7 +90,6 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <script type="text/javascript">
     
     selectProduct();
-    $('[data-toggle="tooltip"]').tooltip();
     $(document).ready(function() {
         $(".increment").click(function() {
             var id = $(this).attr('id');
