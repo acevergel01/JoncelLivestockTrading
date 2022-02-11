@@ -48,38 +48,45 @@ class DataBase
                 $login = true;
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["name"] = $row['email'];
-            } else {$login = false;echo "Invalid password";}
-        } else {$login = false;echo "User does not exist";}
+            } else {
+                $login = false;
+                echo "Invalid password";
+            }
+        } else {
+            $login = false;
+            echo "User does not exist";
+        }
 
         return $login;
     }
 
-    function signUp($table, $email, $password,$name,$address,$number,$gender)
+    function signUp($table, $email, $password, $name, $address, $number, $gender)
     {
         $con = $this->dbConnect();
         $password = $this->prepareData($password);
         $email = $this->prepareData($email);
         $password = password_hash($password, PASSWORD_DEFAULT);
         $this->sql =
-            "INSERT INTO " . $table . " (password, email,name,address,number,gender) VALUES ('"  . $password . "','" . $email . "','". $name . "','". $address. "','". $number. "','". $gender  ."')";
+            "INSERT INTO " . $table . " (password, email,name,address,number,gender) VALUES ('"  . $password . "','" . $email . "','" . $name . "','" . $address . "','" . $number . "','" . $gender  . "')";
         if (!mysqli_query($con, $this->sql)) {
             $errorMsg = mysqli_error($con);
-            if (str_contains($errorMsg, 'users_email_unique')) { 
+            if (str_contains($errorMsg, 'users_email_unique')) {
                 $error = 1;
                 $message = "Email already registered";
             }
             echo json_encode(array('error' => $error, 'message' => $message));
-        }else return true;
+        } else return true;
     }
-    function resetPassword($table, $email,$password)
+    function getProducts($table)
     {
-        $table = 'users';
-        $email = $this->prepareData($email);
-        $password = $this->prepareData($password);
-        $password = password_hash($password, PASSWORD_DEFAULT);         
-        
-        if (mysqli_query($this->dbConnect(), "update users set password='$password' where email='$email'")) {
-            return true;
-        } else return false;
+        $conn = $this->dbConnect();
+        $sql = "SELECT * FROM `$table`";
+        $result = $conn->query($sql);
+        $rows = array();
+        while ($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        // return json_encode($rows);
+        return $result;
     }
 }

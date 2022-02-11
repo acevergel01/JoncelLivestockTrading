@@ -12,9 +12,10 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  background-image: url("assets/bg_index.jpg");
+  background-image: url("assets/bg_index2.png");
   background-size: cover;
-  overflow: wrap;
+  min-height: 100vh;
+  justify-content: space-between;
 }
 body.dashboard {
   background-image: url("assets/bg_home.png");
@@ -24,15 +25,19 @@ header {
   height: auto;
   font-family: "Poppins";
   background-color: #808080;
-  background-color: rgba(94, 94, 94, 0);
-  border: 1px solid #000;
+  background-color: rgba(236, 236, 236, 0.33);
+  border: 1px solid #707070;
+}
+footer {
+  background-color: black;
+  height: 60px;
 }
 header .logo {
   display: table;
   height: 120px;
   width: 120px;
   float: left;
-  margin-left: 50px;
+  margin-left: 75px;
   margin-right: 50px;
 }
 
@@ -54,6 +59,39 @@ header .company-name {
   background-size: 100% 100%;
   flex-grow: 1;
   min-height: 541px;
+}
+.index {
+  height: 100%;
+  margin: 0;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.box {
+  width: 100%;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  border-radius: 10px;
+}
+.box img {
+  max-height: 100%;
+  max-width: 94%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.company-info{
+  padding: 5px;
+  margin-top: 30px;
+  line-height: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 /* dashboard styles */
 .dashboard header {
@@ -80,6 +118,7 @@ header .company-name {
   border: none;
   border-radius: 3px;
   max-width: 110px;
+  margin-left: 15px;
 }
 .cart-btn {
   background-position: center;
@@ -198,6 +237,7 @@ footer .socials {
 }
 /* The Modal (background) */
 .modal-open {
+  z-index: 1;
   position: absolute;
   pointer-events: none;
   background-color: rgb(0, 0, 0, 0); /* Fallback color */
@@ -373,10 +413,7 @@ footer button {
     transform: scale(1);
   }
 }
-footer {
-  background-color: black;
-  height: 60px;
-}
+
 @media screen and (max-width: 992px) {
   header .logo {
     margin-left: 30px;
@@ -429,4 +466,86 @@ footer {
     margin-left: 30px;
     font-size: 18px;
   }
+  .add-to-cart {
+    background-color: #fbf672;
+    border-radius: 25px;
+  }
+}
+.shop {
+  background-image: url("assets/bg_home.png");
+}
+.shop header {
+  width: 100%;
+  background-color: #efefef77;
+}
+.nav-container .select-container {
+  background-color: white;
+  padding: 3px;
+}
+.nav-container select {
+  width: 200px;
+  border-radius: 5px;
+}
+.products th {
+  color: white;
+  padding: 10px 0;
+}
+.product-table tr {
+  height: 70px;
+  background-color: white;
+}
+.product-table table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 0 5px;
+}
+.product-table {
+  margin: 20px 50px;
+  display: table;
+}
+.product-table th span {
+  width: 150px;
+  height: 50px;
+  background-color: #000;
+  padding: 5px 20px;
+  font-size: 18px;
+  color: white;
+}
+.add-to-cart {
+  background-color: #fbf672;
+  padding: 10px 50px;
+  border-radius: 25px;
+}
+.quantity-input{
+  background-color: #AEADB5;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+.decrement{
+  border-radius: 5px;
+  line-height: 13px;
+  width: 20px;  
+  box-shadow: none;
+  border: none;
+  padding:5px;
+  margin: 5px 10px 5px 0;
+}
+.increment{
+  border-radius: 5px;
+  line-height: 13px;
+  width: 20px;  
+  box-shadow: none;
+  border: none;
+  padding:5px;
+  margin: 0px 5px 5px 10px;
+}
+.total{
+  border: 3px #747474 solid;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.tooltips {
+  border: none;
+  background-color: white;
 }

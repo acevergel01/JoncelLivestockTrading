@@ -15,10 +15,21 @@ function openSignup() {
 function closeSignup() {
   document.getElementById("id02").style.display = "none";
 }
-var modal = document.getElementById("id02");
-var span = document.getElementsByClassName("close")[0];
 
 
-span.onclick = function() {
-  openLogin();
+
+function selectProduct() {
+  var j = jQuery.noConflict();
+  var x = $('#products :selected').text();
+  j.ajax({
+      url: "products.php",
+      type: "POST",
+      data: {
+          name: x
+      },
+      success: function(result) {
+          $("#table-body").html(result);
+          $('[data-toggle="tooltip"]').tooltip();
+      },
+  })
 }

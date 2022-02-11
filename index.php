@@ -37,13 +37,21 @@ if (isset($_SESSION["id"])) {
         <div class="company-name">
             <span>JONCEL LIVESTOCK TRADING</span>
         </div>
+        <div class="nav-container">
+            <button class="nav-btn" onclick="window.location.href='aboutus.php'">About Us</button>
+            <div class="vl"></div>
+            <button class="cart-btn">
+                <img src="assets/cart.svg" alt="" onclick="window.location.href='logout.php'"></button>
+            <!-- TODO remove logout -->
+            <button class="nav-btn" id="login-btn">Login</button>
+        </div>
     </header>
 
     <!-- End of the header -->
     <!-- Start of the body -->
     <!-- The login Modal -->
 
-    <div id="id01" class="modal-open" style="display: block;">
+    <div id="id01" class="modal-open" style="display: none;">
         <!-- Modal Content -->
         <div class="modal-content-outside animate">
             <div class="modal-content-inside">
@@ -82,7 +90,7 @@ if (isset($_SESSION["id"])) {
                 <form id="frmSignup" class="modal-content">
                     <div class="modal_header">
                         <span>Register</span>
-                        <span class="close">&times</span>
+                        <span class="close" onclick="closeSignup()">&times</span>
                     </div>
                     <div class="row" style="padding:30px">
                         <div class="col-md-6 text-field">
@@ -156,7 +164,7 @@ if (isset($_SESSION["id"])) {
                                 <input type="checkbox" id="terms" required>
                                 <span class=""></span>
                             </label>
-                            <span>By checking this you agree to the</span><input type="button" value="Terms & Conditions."  />
+                            <span>By checking this you agree to the</span><input type="button" value="Terms & Conditions." />
                             <!-- todo insert terms -->
                         </div>
                         <div class="col-12" style="text-align: center;">
@@ -173,11 +181,51 @@ if (isset($_SESSION["id"])) {
     </div>
 
     <!-- The bodyyy -->
-    <div class="row container-fluid flex-grow-1 body1" style="padding:0;margin:0;">
-        <div class="col-4">
+    <div class="flex-grow-1" style="min-height:570px;padding:40px 0 0 0;">
+
+        <div class="index row" >
+            <div class="col-3"></div>
+            <div class="col-3 row" >
+                <div class="col-6">
+                    <div class="box" style="float:right"><img src="assets/pig.png" alt=""></div>
+                </div>
+                <div class="col-6">
+                    <div class="box"><img src="assets/chicken.png" alt=""></div>
+                </div>
+                <div class="col-6">
+                    <div class="box" style="float:right"><img src="assets/goat.png" alt=""></div>
+                </div>
+                <div class="col-6">
+                    <div class="box"><img src="assets/cow.png" alt=""></div>
+                </div>
+            </div>
+            <div class="col-6" style="max-height: 300px;">
+                <div style="text-transform: uppercase">
+                    <span style="font-size: 100px;line-height:90px">
+                        Providing
+                    </span>
+                    <br>
+                    <span style="font-size: 50px;line-height:50px">
+                        the only best</span>
+                    <br>
+                    <span style="font-size: 40px;line-height:40px">
+                        livestock</span>
+                    <br>
+                    <span style="font-size: 30px;line-height:30px">
+                        since 2019</span>
+                </div>
+
+                <div class="company-info">Joncel Livestock Trading is a registered business about buying and selling live
+                    animals such as pigs, cows, carabaus, horses, and goats. But since pork is in
+                    demand in the market especially during holiday season, our focus is more on
+                    trading swine/hogs (pigs). A quite large amount of money is needed in this
+                    business but I can say it is a good source of income and a great help to sustain
+                    our family's needs and expenses.</div>
+            </div>
+
         </div>
-        <div class="col-8 content">
-        </div>
+
+    </div>
     </div>
     <!-- footer -->
     <footer style="padding: 0;margin: 0;">
@@ -200,6 +248,15 @@ if (isset($_SESSION["id"])) {
 
     <script>
         $(document).ready(function() {
+            $(`#login-btn`).click(function() {
+
+                var modal = document.getElementById("id01");
+
+                if (window.getComputedStyle(modal).display === "none") {
+                    openLogin();
+                } else closeLogin();
+
+            });
             // login 
             $('#frmLogin').submit(function(e) {
                 e.preventDefault();
