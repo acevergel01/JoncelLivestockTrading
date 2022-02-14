@@ -562,7 +562,6 @@ footer button {
   overflow-x: hidden;
   bottom: 0;
   margin-top: 120px;
-  opacity: 80%;
 }
 .profile-body {
   width: 100%;
@@ -606,6 +605,7 @@ footer button {
   border-radius: 0;
   padding: 3px 1px;
   background-color: #ffffff99;
+  border: 1px #70707099 solid;
 }
 .data-container {
   margin-bottom: 40px;

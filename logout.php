@@ -2,5 +2,11 @@
    session_start();
    unset($_SESSION["id"]);
    unset($_SESSION["name"]);
+   unset($_SESSION["uid"]);
+   unset($_SESSION["email"]);
+   unset($_SESSION["number"]);
+   unset($_SESSION["gender"]);
+   unset($_SESSION["address"]);
+   session_destroy();
    header('Location:/');
 ?>

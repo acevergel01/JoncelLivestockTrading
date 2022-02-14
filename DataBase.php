@@ -46,8 +46,13 @@ class DataBase
             $dbpassword = $row['password'];
             if ($dbusername == $email && password_verify($password, $dbpassword)) {
                 $login = true;
-                $_SESSION["id"] = $row['id'];
-                $_SESSION["name"] = $row['email'];
+                $_SESSION["id"] = session_id();
+                $_SESSION["uid"] = $row['id'];
+                $_SESSION["name"] = $row['name'];
+                $_SESSION["email"] = $row['email'];
+                $_SESSION["address"] = $row['address'];
+                $_SESSION["number"] = $row['number'];
+                $_SESSION["username"] = $row['username'];
             } else {
                 $login = false;
                 echo "Invalid password";
@@ -76,6 +81,32 @@ class DataBase
             }
             echo json_encode(array('error' => $error, 'message' => $message));
         } else return true;
+    }
+    function updateUser($table, $email, $name, $address, $number, $username, $id)
+    {
+        $con = $this->dbConnect();
+        $email = $this->prepareData($email);
+        $name = $this->prepareData($name);
+        $address = $this->prepareData($address);
+        $number = $this->prepareData($number);
+        $username = $this->prepareData($username);
+        $this->sql =
+            "UPDATE " . $table . " SET email=\"" . $email . "\", name=\"" . $name . "\", address=\"" . $address . "\", number=\"" . $number . "\", username=\"" . $username  . "\" WHERE id=" . $id . "";
+        if (!mysqli_query($con, $this->sql)) {
+            $errorMsg = mysqli_error($con);
+            if (str_contains($errorMsg, 'users_email_unique')) {
+                $error = 1;
+                $message = "Email already registered";
+            }
+            echo json_encode(array('error' => $error, 'message' => $message));
+        } else {
+            $_SESSION["name"] = $name;
+            $_SESSION["email"] = $email;
+            $_SESSION["address"] = $address;
+            $_SESSION["number"] = $number;
+            $_SESSION["username"] = $username;
+            return true;
+        }
     }
     function getProducts($table)
     {

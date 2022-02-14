@@ -12,7 +12,6 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <!-- icon -->
     <link rel="shortcut icon" type="image/jpg" href="assets/logo_circ.png" />
-    <!-- jquery -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -55,7 +54,7 @@ session_start();
                         <img id="userPic" src="assets/image.png" alt="">
                     </div>
                     <div class="name-container">
-                        <span id="name">Name</span><br>
+                        <span id="name"><?PHP echo $_SESSION['name'] ?></span><br>
                         <span style="text-decoration: underline;font-size: x-small;color: blue;cursor:pointer" onclick="editData()">Edit Profile</span>
                     </div>
                 </div>
@@ -64,8 +63,9 @@ session_start();
                         <div class="profile-label">
                             Username
                         </div>
+
                         <div class="profile-input">
-                            <input type="text">
+                            <?PHP echo "<input type=\"text\" id=\"username\"value=\"" . $_SESSION['username'] . "\">" ?>
                         </div>
                     </div>
                     <div class="data-container">
@@ -73,7 +73,7 @@ session_start();
                             Address
                         </div>
                         <div class="profile-input">
-                            <input type="text">
+                            <?PHP echo "<input type=\"text\" id=\"address\" value=\"" . $_SESSION['address'] . "\">" ?>
                         </div>
                         <div class="profile-input">
                         </div>
@@ -83,7 +83,7 @@ session_start();
                             Email Address
                         </div>
                         <div class="profile-input">
-                            <input type="text">
+                            <?PHP echo "<input type=\"text\" id=\"email\" value=\"" . $_SESSION['email'] . "\">" ?>
                         </div>
                         <div class="profile-input">
                         </div>
@@ -93,9 +93,7 @@ session_start();
                             Contact No.
                         </div>
                         <div class="profile-input">
-                            <input type="text">
-                        </div>
-                        <div class="profile-input">
+                            <?PHP echo "<input type=\"text\" id=\"number\" value=\"" . $_SESSION['number'] . "\">" ?>
                         </div>
                     </div>
                 </div>
@@ -103,7 +101,6 @@ session_start();
                     <button id="logout">Logout</button>
                 </div>
             </div>
-
         </div>
     <?php
     } else
@@ -114,6 +111,8 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            $id = <?PHP echo $_SESSION["uid"] ?>
+
             $("input").prop("disabled", true);
             jQuery("#logout").click(function() {
                 logout();
@@ -127,28 +126,6 @@ session_start();
 
             });
         });
-
-        function editData() {
-            $("input").prop("disabled", false);
-            $("#logout").html("Save");
-            $('#logout').off('click');
-            $('#logout').click(function() {
-                saveData();
-            });
-        };
-
-        function logout() {
-            window.location.href = 'logout.php'
-        }
-
-        function saveData() {
-            $("input").prop("disabled", true);
-            $("#logout").html("Logout");
-            $('#logout').off('click');
-            $('#logout').click(function() {
-                logout();
-            });
-        }
     </script>
 </body>
 

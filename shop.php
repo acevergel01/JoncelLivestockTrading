@@ -49,9 +49,9 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             </div>
             <div class="vl"></div>
             <button class="cart-btn">
-                <img src="assets/cart.svg" alt="" onclick="window.location.href='logout.php'"></button>
+                <img src="assets/cart.svg" alt="" ></button>
             <!-- TODO remove logout -->
-            <button class="user-btn shadow-none">
+            <button class="user-btn shadow-none" id="user-btn">
                 <img src="assets/user.svg" alt="">
             </button>
         </div>
@@ -78,6 +78,63 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 
     </div>
     </div>
+
+    <div id="mySidenav" class="sidenav">
+        <div class="profile-body">
+            <div class="image-name-container">
+                <div class="image-container">
+                    <img id="userPic" src="assets/image.png" alt="">
+                </div>
+                <div class="name-container">
+                    <span id="name"><?PHP echo $_SESSION['name'] ?></span><br>
+                    <span style="text-decoration: underline;font-size: x-small;color: blue;cursor:pointer" onclick="editData()">Edit Profile</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="data-container">
+                    <div class="profile-label">
+                        Username
+                    </div>
+
+                    <div class="profile-input">
+                        <?PHP echo "<input type=\"text\" id=\"username\"value=\"" . $_SESSION['username'] . "\">" ?>
+                    </div>
+                </div>
+                <div class="data-container">
+                    <div class="profile-label">
+                        Address
+                    </div>
+                    <div class="profile-input">
+                        <?PHP echo "<input type=\"text\" id=\"address\" value=\"" . $_SESSION['address'] . "\">" ?>
+                    </div>
+                    <div class="profile-input">
+                    </div>
+                </div>
+                <div class="data-container">
+                    <div class="profile-label">
+                        Email Address
+                    </div>
+                    <div class="profile-input">
+                        <?PHP echo "<input type=\"text\" id=\"email\" value=\"" . $_SESSION['email'] . "\">" ?>
+                    </div>
+                    <div class="profile-input">
+                    </div>
+                </div>
+                <div class="data-container">
+                    <div class="profile-label">
+                        Contact No.
+                    </div>
+                    <div class="profile-input">
+                        <?PHP echo "<input type=\"text\" id=\"number\" value=\"" . $_SESSION['number'] . "\">" ?>
+                    </div>
+                </div>
+            </div>
+            <div class="logout">
+                <button id="logout">Logout</button>
+            </div>
+        </div>
+
+    </div>
 <?php
         } else header('Location:/');
 ?>
@@ -85,6 +142,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="script.js"></script>
 <script type="text/javascript">
     selectProduct();
     $(document).ready(function() {
@@ -95,6 +153,20 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             const textToReplace = element.text();
             const newText = parseInt(textToReplace) + 1;
             element.text(newText);
+        });
+        $id = <?PHP echo $_SESSION["uid"] ?>
+
+        $("input").prop("disabled", true);
+        jQuery("#logout").click(function() {
+            logout();
+        });
+        jQuery(`#user-btn`).click(function() {
+
+            var modal = document.getElementById("mySidenav");
+            if ($("#mySidenav").width() == "0") {
+                openNav();
+            } else closeNav();
+
         });
     });
 
