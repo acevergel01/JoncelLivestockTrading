@@ -104,7 +104,7 @@ session_start();
                 </button>
             </div>
         </footer>        
-        <div id="mySidenav" class="sidenav">
+        <div id="profileMenu" class="sidenav">
             <div class="profile-body">
                 <div class="image-name-container">
                     <div class="image-container">
@@ -170,8 +170,8 @@ session_start();
             });
             jQuery(`#user-btn`).click(function() {
 
-                var modal = document.getElementById("mySidenav");
-                if ($("#mySidenav").width() == "0") {
+                var modal = document.getElementById("profileMenu");
+                if ($("#profileMenu").width() == "0") {
                     openNav();
                 } else closeNav();
 

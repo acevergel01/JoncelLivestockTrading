@@ -1,9 +1,10 @@
 function openNav() {
-  document.getElementById("mySidenav").style.width = "400px";
+  document.getElementById("profileMenu").style.width = "400px";
 }
 function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("profileMenu").style.width = "0";
 }
+
 function editData() {
   $("input").prop("disabled", false);
   $("#logout").html("Save");
@@ -18,27 +19,27 @@ function logout() {
 }
 
 function saveData() {
-    jQuery.ajax({
-        url: "updateUser.php",
-        type: "POST",
-        data: {
-            username: $("#username").val(),
-            address: $("#address").val(),
-            number: $("#number").val(),
-            email: $("#email").val(),
-            name: $("#name").val(),
-            id: $id,
-        },
-        success: function(data) {
-            if (data == "Success") {
-                $("input").prop("disabled", true);
-                $("#logout").html("Logout");
-                $("#logout").off("click");
-                $("#logout").click(function() {
-                    logout();
-                });
-                return;
-            }
-        },
-    });
+  jQuery.ajax({
+    url: "updateUser.php",
+    type: "POST",
+    data: {
+      username: $("#username").val(),
+      address: $("#address").val(),
+      number: $("#number").val(),
+      email: $("#email").val(),
+      name: $("#name").val(),
+      id: $id,
+    },
+    success: function (data) {
+      if (data == "Success") {
+        $("input").prop("disabled", true);
+        $("#logout").html("Logout");
+        $("#logout").off("click");
+        $("#logout").click(function () {
+          logout();
+        });
+        return;
+      }
+    },
+  });
 }

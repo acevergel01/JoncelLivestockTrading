@@ -120,4 +120,36 @@ class DataBase
         // return json_encode($rows);
         return $result;
     }
+    function addToCart($table, $pid, $quantity, $uid)
+    {
+        $pid = $this->prepareData($pid);
+        $quantity = $this->prepareData($quantity);
+        $uid = $this->prepareData($uid);
+        $con = $this->dbConnect();
+        $this->sql = "SELECT cid FROM `$table` WHERE uid=$uid and pid=$pid";
+        $result = mysqli_query($con, $this->sql);
+        $num_rows = mysqli_num_rows($result);
+        if ($num_rows>0){
+            while ($row = $result->fetch_assoc()) {
+                $cid = $row["cid"];
+            }
+            $this->sql = "UPDATE $table SET quantity = $quantity + quantity WHERE cid = $cid";
+            $result = mysqli_query($con, $this->sql);
+        }
+        else{
+            $this->sql = "INSERT INTO $table (uid,pid,quantity) VALUES ($uid,$pid,$quantity)";
+            echo $this->sql;
+            $result = mysqli_query($con, $this->sql);
+        }
+
+        // if ($num_rows>0){
+
+        // }
+        // $rows = array();
+        // while ($r = mysqli_fetch_assoc($result)) {
+        //     $rows[] = $r;
+        // }
+        // // return json_encode($rows);
+        // return $result;
+    }
 }

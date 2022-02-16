@@ -48,7 +48,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                 </select>
             </div>
             <div class="vl"></div>
-            <button class="cart-btn" onclick="window.location.href='cart.php'">
+            <button class="cart-btn">
                 <img src="assets/cart.svg" alt=""></button>
             <!-- TODO remove logout -->
             <button class="user-btn shadow-none" id="user-btn">
@@ -56,24 +56,30 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             </button>
         </div>
     </header>
-    <div class="product-table">
+    <div class="row">
+        <div class="product-table col-8">
+            <?php
+            if (isset($_SESSION["id"])) {
+            ?>
+                <table>
+                    <thead>
+                        <th></th>
+                        <th><span>Type</span></th>
+                        <th><span>Details</span></th>
+                        <th><span>Quantity</span></th>
+                        <th><span>Total Price</span></th>
+                        <th></th>
+                    </thead>
+                    <tbody id="cart-body">
+                    </tbody>
+                </table>
+        </div>
+        <div class="cart-body col-4 flex-1">
 
-        <?php
-        if (isset($_SESSION["id"])) {
-        ?>
-            <table>
-                <thead>
-                    <th></th>
-                    <th><span>Type</span></th>
-                    <th><span>Price</span></th>
-                    <th><span>Quantity</span></th>
-                    <th><span>Total Price</span></th>
-                    <th></th>
-                </thead>
-                <tbody id="table-body">
-                </tbody>
-            </table>
+        </div>
+
     </div>
+
 
     <div id="profileMenu" class="sidenav">
         <div class="profile-body">
@@ -132,16 +138,15 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 
     </div>
 <?php
-        } else header('Location:/');
+            } else header('Location:/');
 ?>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    selectProduct();
+    selectCart();
     $(document).ready(function() {
-        $id = <?PHP echo $_SESSION["uid"] ?>
 
         $("input").prop("disabled", true);
         jQuery("#logout").click(function() {
@@ -155,20 +160,20 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             $("body").toggleClass("fixed-position");
         });
 
-
     });
 
-    function selectProduct() {
+    function selectCart() {
+        $id = <?PHP echo $_SESSION["uid"] ?>;
         var j = jQuery.noConflict();
-        var x = $("#products :selected").text();
+
         j.ajax({
-            url: "products.php",
+            url: "cart-product.php",
             type: "POST",
             data: {
-                name: x,
+                uid: $id,
             },
             success: function(result) {
-                $("#table-body").html(result);
+                $("#cart-body").html(result);
                 $('[data-toggle="tooltip"]').tooltip();
             },
         });

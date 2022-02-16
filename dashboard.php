@@ -30,7 +30,7 @@ session_start();
             <div class="nav-container">
                 <button class="nav-btn" onclick="window.location.href='aboutus.php'">About Us</button>
                 <div class="vl"></div>
-                <button class="cart-btn">
+                <button class="cart-btn" onclick="window.location.href='cart.php'">
                     <img src="assets/cart.svg" alt=""></button>
                 <button class="user-btn shadow-none" id="user-btn">
                     <img src="assets/user.svg" alt="">
@@ -47,7 +47,7 @@ session_start();
                 <button onclick="window.location.href='shop.php'">SHOP NOW</button>
             </div>
         </div>
-        <div id="mySidenav" class="sidenav">
+        <div id="profileMenu" class="sidenav">
             <div class="profile-body">
                 <div class="image-name-container">
                     <div class="image-container">
@@ -106,7 +106,6 @@ session_start();
     } else
         header('Location:/');
     ?>
-    <script src="script.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -119,14 +118,17 @@ session_start();
             });
             jQuery(`#user-btn`).click(function() {
 
-                var modal = document.getElementById("mySidenav");
-                if ($("#mySidenav").width() == "0") {
+                var modal = document.getElementById("profileMenu");
+                if ($("#profileMenu").width() == "0") {
                     openNav();
                 } else closeNav();
+            $("body").toggleClass("fixed-position");
 
             });
         });
     </script>
+    
+    <script src="script.js"></script>
 </body>
 
 </html>
