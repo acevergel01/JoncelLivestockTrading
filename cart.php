@@ -56,14 +56,15 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             </button>
         </div>
     </header>
-    <div class="row" style="margin: 20px 15px">
+    <!-- align-items-start -->
+    <div class="row " style="margin: 20px 15px">
         <div class="cart-table col-md-9">
             <?php
             if (isset($_SESSION["id"])) {
             ?>
                 <table>
                     <thead>
-                        <th></th>
+                        <th class="th-title"> CART</th>
                         <th><span>Type</span></th>
                         <th><span>Details</span></th>
                         <th><span>Quantity</span></th>
@@ -74,26 +75,25 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                     </tbody>
                 </table>
         </div>
-        
+
         <div class="cart-checkout col-md-3 ">
             <div class="payment-info">PAYMENT INFORMATION</div>
             <div class="large-font">Payment Method</div>
             <div>
-                <input class="radio-input" type="radio" id="cod" name="payment" value="Cash on Delivery" required/>
+                <input class="radio-input" type="radio" id="cod" name="payment" value="Cash on Delivery" required />
                 <label class="radio-label large-font" for="cod">Cash on Delivery</label>
             </div>
-            <div
-            >
-                <input class="radio-input" type="radio" id="ap" name="payment" value="Advance Payment"/>
+            <div>
+                <input class="radio-input" type="radio" id="ap" name="payment" value="Advance Payment" />
                 <label class="radio-label large-font" for="ap">Advance Payment</label>
             </div>
             <div class="large-font">Delivery Option</div>
             <div>
-                <input class="radio-input" type="radio" id="deliver" name="delivery" value="Deliver" required/>
+                <input class="radio-input" type="radio" id="deliver" name="delivery" value="Deliver" required />
                 <label class="radio-label large-font" for="deliver">Deliver</label>
             </div>
             <div>
-                <input class="radio-input" type="radio" id="pickup" name="delivery" value="Pickup"/>
+                <input class="radio-input" type="radio" id="pickup" name="delivery" value="Pickup" />
                 <label class="radio-label large-font" for="pickup">Pick Up</label>
             </div>
             <div class="" style="font-size:small;margin-top:20px">CONTACT FOR CONFIRMATION</div>
@@ -102,7 +102,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                 <input type="number">
             </div>
             <div>
-                <input type="checkbox" class="large-font"  style="font-size:medium;margin-top:20px">By CHECKING this, your order/s are confirmed.
+                <input type="checkbox" class="large-font" style="font-size:medium;margin-top:20px">By CHECKING this, your order/s are confirmed.
 
             </div>
             <div style="text-align: center;margin-top:20px">

@@ -9,6 +9,6 @@
 ~~Edit Profile backend~~<br />
 ~~About us~~<br />
 ~~Products~~<br />
-Cart<br />
+~~Cart~~<br />
 checkout<br />
 Edit Profile Picture<br />

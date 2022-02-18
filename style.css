@@ -683,3 +683,38 @@ footer button {
   width: 60%;
   padding: 8px 5px;
 }
+.th-title{
+  font-size: xx-large;
+}
+.quantity{
+  border: 3px #747474 solid;
+  padding: 5px 10px;
+  border-radius: 3px;
+  padding: 5px 45px;
+}
+.total-price-td{
+  padding: 20px;
+  border-top: 2px solid #707070;
+}
+
+.total-price{
+  float: right;
+  margin-right:10px ;
+  font-family: "Segoe UI";
+  color: #707070;
+  font-style: italic;
+  font-weight: bold;
+}
+.total-price .box2{
+  border: 3px #747474 solid;
+  border-radius: 1px;
+  display: inline-block;
+  min-width: 100px;
+  height: 30px;
+  padding: 0px 10px;
+}
+.total-price .label{
+  display: inline-block;
+  font-size: larger;
+  width: 100px;
+}
