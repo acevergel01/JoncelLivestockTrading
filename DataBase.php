@@ -82,16 +82,15 @@ class DataBase
             echo json_encode(array('error' => $error, 'message' => $message));
         } else return true;
     }
-    function updateUser($table, $email, $name, $address, $number, $username, $id)
+    function updateUser($table, $email, $address, $number, $username, $id)
     {
         $con = $this->dbConnect();
         $email = $this->prepareData($email);
-        $name = $this->prepareData($name);
         $address = $this->prepareData($address);
         $number = $this->prepareData($number);
         $username = $this->prepareData($username);
         $this->sql =
-            "UPDATE " . $table . " SET email=\"" . $email . "\", name=\"" . $name . "\", address=\"" . $address . "\", number=\"" . $number . "\", username=\"" . $username  . "\" WHERE id=" . $id . "";
+            "UPDATE " . $table . " SET email=\"" . $email . "\", address=\"" . $address . "\", number=\"" . $number . "\", username=\"" . $username  . "\" WHERE id=" . $id . "";
         if (!mysqli_query($con, $this->sql)) {
             $errorMsg = mysqli_error($con);
             if (str_contains($errorMsg, 'users_email_unique')) {
@@ -100,7 +99,6 @@ class DataBase
             }
             echo json_encode(array('error' => $error, 'message' => $message));
         } else {
-            $_SESSION["name"] = $name;
             $_SESSION["email"] = $email;
             $_SESSION["address"] = $address;
             $_SESSION["number"] = $number;

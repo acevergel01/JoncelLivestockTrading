@@ -7,11 +7,11 @@ function closeNav() {
 
 function editData() {
   $("input").prop("disabled", false);
-  $("#logout").html("Save");
   $("#logout").off("click");
   $("#logout").click(function () {
     saveData();
   });
+  $("#logout").html("Save");
 }
 
 function logout() {
@@ -33,11 +33,11 @@ function saveData() {
     success: function (data) {
       if (data == "Success") {
         $("input").prop("disabled", true);
-        $("#logout").html("Logout");
         $("#logout").off("click");
         $("#logout").click(function () {
           logout();
         });
+        $("#logout").html("Logout");
         return;
       }
     },

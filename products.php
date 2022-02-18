@@ -8,7 +8,7 @@ $sql = "SELECT * FROM products WHERE name='$name'";
 $result = mysqli_query($con, $sql);
 while ($row = mysqli_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . "<img src=" .   $row['image'] . " />" . "</td>";
+    echo "<td class=\"product-image\">" . "<img src=" .   $row['image'] . " />" . "</td>";
     echo "<td>" . "<button class=\"tooltips\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"" . $row['info'] . "\"><i class=\"fas fa-info-circle\"></i></button>" . $row['type'] . "</td>";
     echo "<td>" . "PHP " . $row['price'] . "/KG" . "</td>";
     echo "<td>" . "<span class=\"quantity-input\">

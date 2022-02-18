@@ -56,8 +56,8 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             </button>
         </div>
     </header>
-    <div class="row">
-        <div class="product-table col-8">
+    <div class="row" style="margin: 20px 15px">
+        <div class="cart-table col-md-9">
             <?php
             if (isset($_SESSION["id"])) {
             ?>
@@ -74,8 +74,41 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                     </tbody>
                 </table>
         </div>
-        <div class="cart-body col-4 flex-1">
+        
+        <div class="cart-checkout col-md-3 ">
+            <div class="payment-info">PAYMENT INFORMATION</div>
+            <div class="large-font">Payment Method</div>
+            <div>
+                <input class="radio-input" type="radio" id="cod" name="payment" value="Cash on Delivery" required/>
+                <label class="radio-label large-font" for="cod">Cash on Delivery</label>
+            </div>
+            <div
+            >
+                <input class="radio-input" type="radio" id="ap" name="payment" value="Advance Payment"/>
+                <label class="radio-label large-font" for="ap">Advance Payment</label>
+            </div>
+            <div class="large-font">Delivery Option</div>
+            <div>
+                <input class="radio-input" type="radio" id="deliver" name="delivery" value="Deliver" required/>
+                <label class="radio-label large-font" for="deliver">Deliver</label>
+            </div>
+            <div>
+                <input class="radio-input" type="radio" id="pickup" name="delivery" value="Pickup"/>
+                <label class="radio-label large-font" for="pickup">Pick Up</label>
+            </div>
+            <div class="" style="font-size:small;margin-top:20px">CONTACT FOR CONFIRMATION</div>
+            <div>
 
+                <input type="number">
+            </div>
+            <div>
+                <input type="checkbox" class="large-font"  style="font-size:medium;margin-top:20px">By CHECKING this, your order/s are confirmed.
+
+            </div>
+            <div style="text-align: center;margin-top:20px">
+                <button class="check-out-btn">CHECK OUT</button>
+
+            </div>
         </div>
 
     </div>
@@ -148,7 +181,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
     selectCart();
     $(document).ready(function() {
 
-        $("input").prop("disabled", true);
+        $("input[type=\"text\"]").prop("disabled", true);
         jQuery("#logout").click(function() {
             logout();
         });

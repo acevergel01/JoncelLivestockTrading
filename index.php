@@ -121,7 +121,7 @@ if (isset($_SESSION["id"])) {
                             <input class="radio-input" type="radio" id="male" name="gender" value="Male" required>
                             <label class="radio-label" for="male">Male</label>
                             <input class="radio-input" type="radio" id="female" name="gender" value="Female">
-                            <label class="radio-label" for="male">Female</label>
+                            <label class="radio-label" for="female">Female</label>
                         </div>
                         <div class="col-md-6 text-field">
                             <div class="a-text">

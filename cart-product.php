@@ -3,7 +3,7 @@
     $db = new DataBase();
     $id = $_POST['id'];
     $con = $db->dbConnect();
-    $sql = "SELECT * FROM products WHERE id='$id'";
+    $sql = "SELECT * FROM cart WHERE uid='$id'";
     $result = mysqli_query($con, $sql);
     echo $sql;
     // while ($row = mysqli_fetch_array($result)) {
