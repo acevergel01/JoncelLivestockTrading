@@ -106,18 +106,6 @@ class DataBase
             return true;
         }
     }
-    function getProducts($table)
-    {
-        $conn = $this->dbConnect();
-        $sql = "SELECT * FROM `$table`";
-        $result = $conn->query($sql);
-        $rows = array();
-        while ($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        // return json_encode($rows);
-        return $result;
-    }
     function addToCart($table, $pid, $quantity, $uid)
     {
         $pid = $this->prepareData($pid);
@@ -127,27 +115,42 @@ class DataBase
         $this->sql = "SELECT cid FROM `$table` WHERE uid=$uid and pid=$pid";
         $result = mysqli_query($con, $this->sql);
         $num_rows = mysqli_num_rows($result);
-        if ($num_rows>0){
+        if ($num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $cid = $row["cid"];
             }
             $this->sql = "UPDATE $table SET quantity = $quantity + quantity WHERE cid = $cid";
             $result = mysqli_query($con, $this->sql);
-        }
-        else{
+        } else {
             $this->sql = "INSERT INTO $table (uid,pid,quantity) VALUES ($uid,$pid,$quantity)";
             echo $this->sql;
             $result = mysqli_query($con, $this->sql);
         }
-
-        // if ($num_rows>0){
-
-        // }
-        // $rows = array();
-        // while ($r = mysqli_fetch_assoc($result)) {
-        //     $rows[] = $r;
-        // }
-        // // return json_encode($rows);
-        // return $result;
     }
+    function checkout($table,$payment_method,$delivery_method,$number,$total_price)
+    {
+        $payment_method = $this->prepareData($payment_method);
+        $delivery_method = $this->prepareData($delivery_method);
+        $total_price = $this->prepareData($total_price);
+        $number = $this->prepareData($number);
+        $uid = $_SESSION['uid'];
+        $name = $_SESSION['name'];
+        $table = "orders";
+        $con = $this->dbConnect();
+        $sql = "SELECT pid,quantity FROM `cart`  WHERE uid='$uid'";
+        $result = mysqli_query($con, $sql);
+        $orders = array();
+        $quantities = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $orders[] = $row['pid'];
+            $quantities[] = $row['quantity'];
+        }
+        $orders =  json_encode($orders);
+        $quantities = json_encode($quantities);
+        $sql2 =
+        "INSERT INTO " . $table . " (name,number, orders,quantity,total_price,payment_mode,delivery_mode) VALUES ('" .
+         $name . "','" . $number . "','" . $orders . "','" . $quantities . "','" . $total_price . "','" . $payment_method . "','" . $delivery_method  . "')";
+         $result2 = mysqli_query($con, $sql2);
+         echo $sql2;
+        }
 }

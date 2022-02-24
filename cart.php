@@ -75,41 +75,45 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                     </tbody>
                 </table>
         </div>
+        <div class="cart-checkout col-md-3">
 
-        <div class="cart-checkout col-md-3 ">
-            <div class="payment-info">PAYMENT INFORMATION</div>
-            <div class="large-font">Payment Method</div>
-            <div>
-                <input class="radio-input" type="radio" id="cod" name="payment" value="Cash on Delivery" required />
-                <label class="radio-label large-font" for="cod">Cash on Delivery</label>
-            </div>
-            <div>
-                <input class="radio-input" type="radio" id="ap" name="payment" value="Advance Payment" />
-                <label class="radio-label large-font" for="ap">Advance Payment</label>
-            </div>
-            <div class="large-font">Delivery Option</div>
-            <div>
-                <input class="radio-input" type="radio" id="deliver" name="delivery" value="Deliver" required />
-                <label class="radio-label large-font" for="deliver">Deliver</label>
-            </div>
-            <div>
-                <input class="radio-input" type="radio" id="pickup" name="delivery" value="Pickup" />
-                <label class="radio-label large-font" for="pickup">Pick Up</label>
-            </div>
-            <div class="" style="font-size:small;margin-top:20px">CONTACT FOR CONFIRMATION</div>
-            <div>
+            <form id="checkout">
+                <div class="payment-info">PAYMENT INFORMATION</div>
+                <div class="large-font">Payment Method</div>
+                <div>
+                    <input class="radio-input" type="radio" id="cod" name="payment" value="Cash on Delivery" required />
+                    <label class="radio-label large-font" for="cod">Cash on Delivery</label>
+                </div>
+                <div>
+                    <input class="radio-input" type="radio" id="ap" name="payment" value="Advance Payment" />
+                    <label class="radio-label large-font" for="ap">Advance Payment</label>
+                </div>
+                <div class="large-font">Delivery Option</div>
+                <div>
+                    <input class="radio-input" type="radio" id="deliver" name="delivery" value="Deliver" required />
+                    <label class="radio-label large-font" for="deliver">Deliver</label>
+                </div>
+                <div>
+                    <input class="radio-input" type="radio" id="pickup" name="delivery" value="Pickup" />
+                    <label class="radio-label large-font" for="pickup">Pick Up</label>
+                </div>
+                <div class="" style="font-size:small;margin-top:20px">CONTACT FOR CONFIRMATION</div>
+                <div>
 
-                <input type="number">
-            </div>
-            <div>
-                <input type="checkbox" class="large-font" style="font-size:medium;margin-top:20px">By CHECKING this, your order/s are confirmed.
+                    <input id="number" type="number" required>
+                </div>
+                <div>
+                    <input type="checkbox" class="large-font" style="font-size:medium;margin-top:20px" id="confirm" required>By CHECKING this, your order/s are confirmed.
 
-            </div>
-            <div style="text-align: center;margin-top:20px">
-                <button class="check-out-btn">CHECK OUT</button>
+                </div>
+                <div style="text-align: center;margin-top:20px">
+                    <button class="check-out-btn" type="submit">CHECK OUT</button>
 
-            </div>
+                </div>
+            </form>
         </div>
+
+
 
     </div>
 
@@ -160,7 +164,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                         Contact No.
                     </div>
                     <div class="profile-input">
-                        <?PHP echo "<input type=\"text\" id=\"number\" value=\"" . $_SESSION['number'] . "\">" ?>
+                        <?PHP echo "<input type=\"text\" id=\"number\" value=\"" . $_SESSION['number'] . "\" \>" ?>
                     </div>
                 </div>
             </div>
@@ -173,6 +177,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <?php
             } else header('Location:/');
 ?>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -180,7 +185,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <script type="text/javascript">
     selectCart();
     $(document).ready(function() {
-
+        selectCart()
         $("input[type=\"text\"]").prop("disabled", true);
         jQuery("#logout").click(function() {
             logout();
@@ -192,13 +197,28 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
             } else closeNav();
             $("body").toggleClass("fixed-position");
         });
-
+        jQuery('#checkout').submit(function(e) {
+            e.preventDefault();
+            if (!$('#confirm').is(':checked')) {
+                return;
+            }
+            jQuery.ajax({
+                url: "checkout.php",
+                type: "POST",
+                data: {
+                    number: $("#number").val(),
+                    total_price: $totalPrice,
+                    payment_mode: $('input[name="payment"]:checked').val(),
+                    delivery_mode: $('input[name="delivery"]:checked').val(),
+                },
+                success: function(data) {},
+            });
+        });
     });
 
     function selectCart() {
         $id = <?PHP echo $_SESSION["uid"] ?>;
         var j = jQuery.noConflict();
-
         j.ajax({
             url: "cart-product.php",
             type: "POST",
@@ -206,6 +226,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                 uid: $id,
             },
             success: function(result) {
+                $totalPrice = <?PHP echo $_SESSION['totalPrice']; ?>;
                 $("#cart-body").html(result);
                 $('[data-toggle="tooltip"]').tooltip();
             },

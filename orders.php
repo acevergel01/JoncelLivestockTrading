@@ -1,18 +1,11 @@
 <?php
 session_start();
 require "DataBase.php";
-$uid = $_SESSION['uid'];
 $db = new DataBase();
 $con = $db->dbConnect();
-$sql = "SELECT pid,quantity FROM cart WHERE uid='$uid'";
+$sql = "SELECT DISTINCT uid FROM orders";
 $result = mysqli_query($con, $sql);
-$subTotal = 0;
-$deliveryFee = 0;
-$orders = array();
-$quantities = array();
 while ($row = mysqli_fetch_array($result)) {
-    $orders[] = $row['pid'];
-    $quantities[] = $row['quantity'];
     $pid = $row['pid'];
     $quantity = $row['quantity'];
     $sql = "SELECT * FROM products WHERE prod_id='$pid'";
@@ -27,10 +20,10 @@ while ($row = mysqli_fetch_array($result)) {
         echo "<td> <span class=\"quantity\">$quantity</span></td>";
         echo "<td> <span class=\"total\">PHP $total</span></td>";
         echo "</tr>";
+
     }
 }
-$totalPrice = $subTotal + $deliveryFee;
-
+$totalPrice = $subTotal + $deleveryFee;
 echo "<tr>
 <td class=\"total-price-td\" colspan=\"5\">
     <div class=\"total-price\">
@@ -44,11 +37,8 @@ echo "<tr>
         </div>
         <div>
             <div class=\"label\">Total:</div>
-            <div id=\"totalPrice\" class=\"box2\">$totalPrice</div>
+            <div class=\"box2\" id=\"totalPrice\">$totalPrice</div>
         </div>
     </div>
 </td>
 </tr>";
-$_SESSION["totalPrice"] = $totalPrice;
-
-
