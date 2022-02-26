@@ -14,7 +14,6 @@ body {
   flex-direction: column;
   background-image: url("assets/bg_index2.png");
   background-size: cover;
-  min-height: 100vh;
 }
 body.dashboard {
   background-image: url("assets/bg_home.png");
@@ -30,6 +29,7 @@ header {
 footer {
   background-color: black;
   height: 60px;
+  margin-top: auto;
 }
 header .logo {
   display: table;
@@ -89,7 +89,6 @@ header .company-name {
 .company-info {
   padding: 5px;
   margin-top: 30px;
-  line-height: 15px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 /* dashboard styles */

@@ -32,12 +32,16 @@ session_start();
         </div>
         <div class="nav-container">
             <button class="nav-btn" onclick="window.location.href='dashboard.php'">Home</button>
-            <div class="vl"></div>
-            <button class="cart-btn">
-                <img src="assets/cart.svg" alt=""></button>
-            <button class="user-btn shadow-none" id="user-btn">
-                <img src="assets/user.svg" alt="">
-            </button>
+            
+            <?php if (isset($_SESSION['id'])) {
+                echo "<div class=\"vl\"></div>
+                <button class=\"cart-btn\">
+                <img src=\"assets/cart.svg\" alt=\"\"></button>
+                <button class=\"user-btn shadow-none\" id=\"user-btn\">
+                <img src=\"assets/user.svg\" alt=\"\">
+                </button>\"";
+            } ?>
+
         </div>
     </header>
     <div class="aboutus-body" style="text-align: center;">
@@ -69,8 +73,8 @@ session_start();
             </div>
         </div>
         <div class="" style="padding:30px 100px;text-align: left;">
-            <div style="background-color:rgba(256, 256, 256, .3);padding:10px;border: 1px solid #70707059;"> 
-                <span >
+            <div style="background-color:rgba(256, 256, 256, .3);padding:10px;border: 1px solid #70707059;">
+                <span>
                     Joncel Livestock Trading has a long history of serving consumers and the community as a family-owned business. Even though things have changed over time, the personal and pleasant service our customers have grown to expect will never change.
                     Produced locally in the Philippines, growing only the healthiest livestock and the safest poultry Joncel Livestock Trading is the go-to online platform for private treaty sales of livestock, and poultry. Owned and founded by Johnny V. Panganiban Joncel Livestock has never been any better.
                 </span>
@@ -97,7 +101,7 @@ session_start();
             <button><i class="fab fa-twitter"></i>
             </button>
 
-            <button><i class="fab fa-facebook"></i>
+            <button><i class="fab fa-facebook" onclick="location.href='https://www.facebook.com/celia.c.panganiban'"></i>
 
             </button>
         </div>
@@ -160,7 +164,10 @@ session_start();
     <script src="script.js"></script>
     <script>
         $(document).ready(function() {
-            $id = <?PHP echo $_SESSION["uid"] ?>;
+            if (!<?PHP echo $_SESSION["uid"]; ?>){
+                return;
+            }
+            $id = '<?PHP echo $_SESSION["uid"]; ?>';
 
             $("input").prop("disabled", true);
             jQuery("#logout").click(function() {

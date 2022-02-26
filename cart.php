@@ -72,6 +72,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                         <th></th>
                     </thead>
                     <tbody id="cart-body">
+
                     </tbody>
                 </table>
         </div>
@@ -100,7 +101,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                 <div class="" style="font-size:small;margin-top:20px">CONTACT FOR CONFIRMATION</div>
                 <div>
 
-                    <input id="number" type="number" required>
+                    <input id="number_cart" type="number" required>
                 </div>
                 <div>
                     <input type="checkbox" class="large-font" style="font-size:medium;margin-top:20px" id="confirm" required>By CHECKING this, your order/s are confirmed.
@@ -175,7 +176,7 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 
     </div>
 <?php
-            } else header('Location:/');
+            } else ;
 ?>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -185,7 +186,6 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <script type="text/javascript">
     selectCart();
     $(document).ready(function() {
-        selectCart()
         $("input[type=\"text\"]").prop("disabled", true);
         jQuery("#logout").click(function() {
             logout();
@@ -206,12 +206,14 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                 url: "checkout.php",
                 type: "POST",
                 data: {
-                    number: $("#number").val(),
-                    total_price: $totalPrice,
+                    number: $("#number_cart").val(),
+                    total_price: $('#totalPrice').text(),
                     payment_mode: $('input[name="payment"]:checked').val(),
                     delivery_mode: $('input[name="delivery"]:checked').val(),
                 },
-                success: function(data) {},
+                success: function(data) {
+                    alert("Order Placed. Wait for text confirmation. Thank you!")
+                },
             });
         });
     });
@@ -226,7 +228,6 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
                 uid: $id,
             },
             success: function(result) {
-                $totalPrice = <?PHP echo $_SESSION['totalPrice']; ?>;
                 $("#cart-body").html(result);
                 $('[data-toggle="tooltip"]').tooltip();
             },

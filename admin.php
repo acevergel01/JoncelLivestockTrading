@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_SESSION['id'])) {
+    if (!(isset($_SESSION['id']) && $_SESSION['admin'])) {
+        header('Location:/');
+    }
+} else
+    header('Location:/');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +23,72 @@ session_start();
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/33baa4b98a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        tr {
+            padding: 10px
+        }
+    </style>
 </head>
 
-<body class="dashboard">
+<body class="dashboard" style="padding:50px">
+    <table style="background-color: white;">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Orders</th>
+                <th>Qquantity</th>
+                <th>Payment Method</th>
+                <th>Delivery Method</th>
+                <th>Total Price</th>
 
+            </tr>
+        </thead>
+        <tbody>
+            <?PHP
+            require "DataBase.php";
+            $uid = $_SESSION['uid'];
+            $db = new DataBase();
+            $con = $db->dbConnect();
+            $sql = "SELECT * FROM orders";
+            $result = mysqli_query($con, $sql);
+            $orderList = array();
+            while ($row = mysqli_fetch_array($result)) {
+                $orders = json_decode($row['orders']);
+                $quantity = json_decode($row['quantity']);
+                foreach ($orders as $order) {
+                    $sql2 = "SELECT type FROM products where prod_id='$order'";
+                    $result2 = mysqli_query($con, $sql2);
+                    array_push($orderList, mysqli_fetch_array($result2)['type']);
+                }
+                echo "<tr>";
+                echo "<td>" . $row['oid'] . "</td>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $row['number'] . "</td>";
+
+                echo "<td>";
+                foreach ($orderList as $index => $value) {
+                    echo $orderList[$index] . "<br>";
+                }
+                echo "</td>";
+
+                echo "<td>";
+                foreach ($quantity  as $index => $value) {
+                    echo $quantity[$index] . "<br>";
+                }
+                echo "</td>";
+
+                echo "<td>" . $row['payment_mode'] . "</td>";
+
+                echo "<td>" . $row['delivery_mode'] . "</td>";
+                echo "<td>" . $row['total_price'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+
+        </tbody>
+    </table>
 </body>
 
 </html>

@@ -41,7 +41,7 @@ if (isset($_SESSION["id"])) {
             <button class="nav-btn" onclick="window.location.href='aboutus.php'">About Us</button>
             <div class="vl"></div>
             <button class="cart-btn">
-                <img src="assets/cart.svg" alt="" onclick="window.location.href='logout.php'"></button>
+                <img src="assets/cart.svg" alt="" onclick="window.location.href='cart.php'"></button>
             <!-- TODO remove logout -->
             <button class="nav-btn" id="login-btn">Login</button>
         </div>
@@ -181,22 +181,21 @@ if (isset($_SESSION["id"])) {
     </div>
 
     <!-- The bodyyy -->
-    <div class="flex-grow-1" style="min-height:570px;padding:40px 0 0 0;">
+    <div class="" style="min-height:100%;padding:80px 0 0 0;">
 
-        <div class="index row">
-            <div class="col-3"></div>
-            <div class="col-3 row">
-                <div class="col-6">
-                    <div class="box" style="float:right"><img src="assets/pig.png" alt=""></div>
+        <div class="index row align-content-lg-start">
+            <div class="col-5 row" style="padding-left:250px">
+                <div class="col-6" style="display: flex; height: fit-content;">
+                    <div class="box" style="float:right;align-self: flex-end;"><img src="assets/pig.png" alt=""></div>
+                </div>
+                <div class="col-6"  style="display: flex;    height: fit-content;">
+                    <div class="box" style="align-self: flex-end;"><img src="assets/chicken.png" alt=""></div>
                 </div>
                 <div class="col-6">
-                    <div class="box"><img src="assets/chicken.png" alt=""></div>
+                    <div class="box" style="float:right; "><img src="assets/goat.png" alt=""></div>
                 </div>
                 <div class="col-6">
-                    <div class="box" style="float:right"><img src="assets/goat.png" alt=""></div>
-                </div>
-                <div class="col-6">
-                    <div class="box"><img src="assets/cow.png" alt=""></div>
+                    <div class="box" ><img src="assets/cow.png" alt=""></div>
                 </div>
             </div>
             <div class="col-6" style="max-height: 300px;">
@@ -228,7 +227,7 @@ if (isset($_SESSION["id"])) {
     </div>
     </div>
     <!-- footer -->
-    <footer style="padding: 0;margin: 0;">
+    <footer style="padding: 0;margin: 0;margin-top: auto;">
         <div style="float:right;height:100%;padding:15px;margin-right:50px">
 
             <span style="color:white;padding:0 10px;">CONTACT</span>
@@ -236,10 +235,10 @@ if (isset($_SESSION["id"])) {
             <button><i class="fab fa-instagram"></i>
             </button>
 
-            <button><i class="fab fa-twitter"></i>
+            <button ><i class="fab fa-twitter"></i>
             </button>
 
-            <button><i class="fab fa-facebook"></i>
+            <button onclick="location.href='https://www.facebook.com/celia.c.panganiban'"><i class="fab fa-facebook" ></i>
 
             </button>
         </div>
@@ -295,14 +294,6 @@ if (isset($_SESSION["id"])) {
                         if (data == 'Sign Up Success') {
                             openLogin()
                             return;
-                        }
-                        const dataObj = JSON.parse(data)
-                        if (dataObj.error) {
-                            $.alert({
-                                title: 'Duplicate Email',
-                                content: 'Email already registered',
-                                type: 'red',
-                            });
                         }
                     },
                 });

@@ -8,11 +8,7 @@ $sql = "SELECT pid,quantity FROM cart WHERE uid='$uid'";
 $result = mysqli_query($con, $sql);
 $subTotal = 0;
 $deliveryFee = 0;
-$orders = array();
-$quantities = array();
 while ($row = mysqli_fetch_array($result)) {
-    $orders[] = $row['pid'];
-    $quantities[] = $row['quantity'];
     $pid = $row['pid'];
     $quantity = $row['quantity'];
     $sql = "SELECT * FROM products WHERE prod_id='$pid'";
@@ -49,6 +45,3 @@ echo "<tr>
     </div>
 </td>
 </tr>";
-$_SESSION["totalPrice"] = $totalPrice;
-
-

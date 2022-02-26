@@ -53,6 +53,7 @@ class DataBase
                 $_SESSION["address"] = $row['address'];
                 $_SESSION["number"] = $row['number'];
                 $_SESSION["username"] = $row['username'];
+                $_SESSION["admin"] = $row['admin'];
             } else {
                 $login = false;
                 echo "Invalid password";
@@ -78,8 +79,11 @@ class DataBase
             if (str_contains($errorMsg, 'users_email_unique')) {
                 $error = 1;
                 $message = "Email already registered";
+
+                echo json_encode(array('error' => $error, 'message' => $message));
             }
-            echo json_encode(array('error' => $error, 'message' => $message));
+        echo "hello";
+        echo $errorMsg;
         } else return true;
     }
     function updateUser($table, $email, $address, $number, $username, $id)
@@ -127,7 +131,7 @@ class DataBase
             $result = mysqli_query($con, $this->sql);
         }
     }
-    function checkout($table,$payment_method,$delivery_method,$number,$total_price)
+    function checkout($table, $payment_method, $delivery_method, $number, $total_price)
     {
         $payment_method = $this->prepareData($payment_method);
         $delivery_method = $this->prepareData($delivery_method);
@@ -148,9 +152,9 @@ class DataBase
         $orders =  json_encode($orders);
         $quantities = json_encode($quantities);
         $sql2 =
-        "INSERT INTO " . $table . " (name,number, orders,quantity,total_price,payment_mode,delivery_mode) VALUES ('" .
-         $name . "','" . $number . "','" . $orders . "','" . $quantities . "','" . $total_price . "','" . $payment_method . "','" . $delivery_method  . "')";
-         $result2 = mysqli_query($con, $sql2);
-         echo $sql2;
-        }
+            "INSERT INTO " . $table . " (name,number, orders,quantity,total_price,payment_mode,delivery_mode) VALUES ('" .
+            $name . "','" . $number . "','" . $orders . "','" . $quantities . "','" . $total_price . "','" . $payment_method . "','" . $delivery_method  . "')";
+        $result2 = mysqli_query($con, $sql2);
+        echo $sql2;
+    }
 }
