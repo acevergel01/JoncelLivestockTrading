@@ -176,7 +176,139 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 
     </div>
 <?php
-            } else ;
+            } else { ?>
+    <!-- The login Modal -->
+
+    <div id="id01" class="modal-open" style="display: block;padding-top: 50px;">
+        <!-- Modal Content -->
+        <div class="modal-content-outside animate">
+            <div class="modal-content-inside">
+                <form id="frmLogin" class="modal-content">
+                    <div class="modal_header">
+                        <span>Login To Your Account</span>
+                    </div>
+                    <div class="row">
+                        <div class=" col-md-7 col-sm-12" style="padding:30px 50px 1px 50px;float:left;">
+                            <label for="email"><b>E-mail</b></label>
+                            <input type="email" placeholder="E-mail" name="email" id="email" required />
+
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Password" name="password" id="password" required />
+                            <button type="submit" id="btnLogin">
+                                <span class="material-icons center">
+                                    arrow_forward
+                                </span>
+                            </button>
+                        </div>
+                        <div class="col-md-5 col-sm-12 modal-right-side" style="padding-top:30px;float: left;text-align: center">
+                            <img src="assets/logo_name.png" alt="asd">
+                            <div style=" color: black;margin-bottom:30px"><span>Don't have an account? Click</span><input type="button" value="here" onclick="openSignup()" /> to register.
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- sign up modal -->
+    <div id="id02" class="modal-open signup" style="display: none;padding-top: 50px;">
+        <!-- Modal Content -->
+        <div class="modal-content-outside animate">
+            <div class="modal-content-inside">
+                <form id="frmSignup" class="modal-content">
+                    <div class="modal_header">
+                        <span>Register</span>
+                        <span class="close" onclick="openLogin()">&times</span>
+                    </div>
+                    <div class="row" style="padding:30px">
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        FULL NAME
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="Last Name, Fist Name Middle Name" style="border-radius: 0;height:inherit" name="fname" id="fname" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        EMAIL
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="email" placeholder="youremail@email.com" style="border-radius: 0;height:inherit" name="regEmail" id="regEmail" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field" style="text-align:center">
+                            <input class="radio-input" type="radio" id="male" name="gender" value="Male" required>
+                            <label class="radio-label" for="male">Male</label>
+                            <input class="radio-input" type="radio" id="female" name="gender" value="Female">
+                            <label class="radio-label" for="female">Female</label>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        PASSWORD
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="password" placeholder="********" style="border-radius: 0;height:inherit" name="regPassword" id="regPassword" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        COMPLETE ADDRESS
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" name="address" id="address" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-field">
+                            <div class="a-text">
+                                <div class="a-label">
+                                    <div>
+                                        CONTACT NUMBER
+                                    </div>
+                                </div>
+                                <div class="a-input">
+                                    <input type="text" placeholder="" style="border-radius: 0;height:inherit" name="number" id="number" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" style="text-align: center;margin:20px 0 20px 0">
+                            <label class="">
+                                <input type="checkbox" id="terms" required>
+                                <span class=""></span>
+                            </label>
+                            <span>By checking this you agree to the</span><input type="button" value="Terms & Conditions." />
+                            <!-- todo insert terms -->
+                        </div>
+                        <div class="col-12" style="text-align: center;">
+                            <button type="submit" id="btnSignup">
+                                <span class="material-icons center">
+                                    arrow_forward
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?PHP
+            };
 ?>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -186,6 +318,61 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
 <script type="text/javascript">
     selectCart();
     $(document).ready(function() {
+        $(`#login-btn`).click(function() {
+
+            var modal = document.getElementById("id01");
+
+            if (window.getComputedStyle(modal).display === "none") {
+                openLogin();
+            } else closeLogin();
+
+        });
+        // login 
+        $('#frmLogin').submit(function(e) {
+            e.preventDefault();
+            jQuery.ajax({
+                url: "login.php",
+                type: "POST",
+                data: {
+                    email: $("#email").val(),
+                    password: $("#password").val()
+                },
+                success: function(result) {
+                    window.location.replace("dashboard.php");
+                },
+            });
+            // signup
+            return false;
+        });
+        $('#frmSignup').submit(function(e) {
+            e.preventDefault();
+            if (!$('#terms').is(':checked')) {
+
+                return;
+            }
+            jQuery.ajax({
+                url: "signup.php",
+                type: "POST",
+                data: {
+                    name: $("#fname").val(),
+                    password: $("#regPassword").val(),
+                    address: $("#address").val(),
+                    number: $("#number").val(),
+                    email: $("#regEmail").val(),
+                    gender: $('input[name="gender"]:checked').val()
+                },
+                success: function(data) {
+                    if (data == 'Sign Up Success') {
+                        openLogin()
+                        return;
+                    }
+                },
+            });
+
+            return false;
+        })
+
+
         $("input[type=\"text\"]").prop("disabled", true);
         jQuery("#logout").click(function() {
             logout();
@@ -218,8 +405,26 @@ $result = mysqli_query($con, "SELECT DISTINCT name FROM products");
         });
     });
 
+    function openLogin() {
+        closeSignup();
+        document.getElementById("id01").style.display = "block";
+    }
+
+    function closeLogin() {
+        document.getElementById("id01").style.display = "none";
+    }
+
+    function openSignup() {
+        closeLogin();
+        document.getElementById("id02").style.display = "block";
+    }
+
+    function closeSignup() {
+        document.getElementById("id02").style.display = "none";
+    }
+
     function selectCart() {
-        $id = <?PHP echo $_SESSION["uid"] ?>;
+        $id = '<?PHP if (isset($_SESSION["uid"])) echo $_SESSION["uid"] ?>';
         var j = jQuery.noConflict();
         j.ajax({
             url: "cart-product.php",

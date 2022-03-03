@@ -38,7 +38,7 @@ if (isset($_SESSION['id'])) {
                 <th>Name</th>
                 <th>Number</th>
                 <th>Orders</th>
-                <th>Qquantity</th>
+                <th>Quantity</th>
                 <th>Payment Method</th>
                 <th>Delivery Method</th>
                 <th>Total Price</th>
